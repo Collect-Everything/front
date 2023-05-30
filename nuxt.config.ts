@@ -8,7 +8,10 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/css/main.css'],
+  css: [
+    '@/assets/css/main.css',
+    '@fortawesome/fontawesome-svg-core/styles.css',
+  ],
 
   modules: [
     [
@@ -34,7 +37,7 @@ export default defineNuxtConfig({
           useCookie: true,
           cookieKey: 'i18n_redirected',
         },
-        vueI18n: './admin-front/i18n.config.ts',
+        vueI18n: './showcase-front/i18n.config.ts',
       },
     ],
   ],
@@ -45,4 +48,13 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+
+  build: {
+    transpile: [
+      '@fortawesome/fontawesome-svg-core',
+      '@fortawesome/free-solid-svg-icons',
+      '@fortawesome/free-brands-svg-icons',
+      '@fortawesome/vue-fontawesome'
+    ]
+  }
 })
