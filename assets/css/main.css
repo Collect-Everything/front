@@ -29,7 +29,15 @@ html {
   font-family: LatoRegular, serif;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+.input {
+  @apply border border-gray-500 rounded-md h-10 px-4;
+}
+
+input {
+  @apply focus:outline-none;
+}
+
+select {
   @apply border border-gray-500 rounded-md h-10 px-4;
 }
 

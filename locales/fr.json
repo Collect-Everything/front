@@ -6,7 +6,18 @@
     "login": "Se connecter",
     "oauthLogin": "Se connecter avec Google",
     "noAccount": "Pas encore de compte ?",
-    "register": "S'inscrire"
+    "register": "S'inscrire",
+    "companyName": "Nom de l'entreprise",
+    "phone": "Téléphone",
+    "address": "Adresse",
+    "zipcode": "Code postal",
+    "city": "Ville",
+    "subscription": "Formule d'abonnement",
+    "chooseSubscription": "Choisissez votre formule",
+    "passwordConfirm": "Confirmation du mot de passe",
+    "passwordPlaceholder": "Au moins 8 caractères",
+    "differentPasswords": "Les mots de passe ne correspondent pas",
+    "account": "J'ai déjà un compte !"
   },
   "general": {
     "or": "Ou"
