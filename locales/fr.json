@@ -20,6 +20,7 @@
     "account": "J'ai déjà un compte !"
   },
   "general": {
-    "or": "Ou"
+    "or": "Ou",
+    "home": "Accueil"
   }
 }
