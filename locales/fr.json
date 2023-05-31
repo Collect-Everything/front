@@ -25,7 +25,8 @@
   "general": {
     "or": "Ou",
     "home": "Accueil",
-    "continue": "Continuer"
+    "continue": "Continuer",
+    "back": "Retour"
   },
   "invitations": {
     "title": "Vérifiez votre email",
@@ -55,7 +56,24 @@
       "colors": "Couleurs",
       "chooseLogo": "Choisir un logo",
       "colorsHint": "Cette couleur sera utilisée pour les boutons et accentuations.",
-      "primaryColor": "Couleur primaire"
+      "primaryColor": "Couleur primaire",
+      "texts": {
+        "title": "Textes de votre boutique",
+        "text": "Entrez ici les textes, phrases d'accroche et points forts de votre boutique.",
+        "homePage": {
+          "mainSection": "Page d'accueil : Section principale",
+          "advantages": "Avantages boutique (optionnel)"
+        }
+      },
+      "homePage": {
+        "title": "Titre",
+        "description": "Description",
+        "buttonText": "Bouton",
+        "backgroundImage": "Image",
+        "chooseImage": "Choisir une image",
+        "icon": "Icône",
+        "addAdvantage": "Ajouter un autre avantage"
+      }
     }
   }
 }

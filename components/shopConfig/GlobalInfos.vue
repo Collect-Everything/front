@@ -65,7 +65,7 @@
       <span>{{ $t('shop.config.colorsHint') }}</span>
     </div>
 
-    <button class="btn-primary w-full">
+    <button class="btn-primary w-full" @click="$emit('changePage', 'texts')">
       {{ $t('general.continue') }}
     </button>
   </div>
@@ -73,6 +73,7 @@
 
 <script lang="ts">
 export default {
+  name: 'ShopConfigGlobalInfos',
   props: {
     shopName: {
       type: String,
@@ -87,7 +88,7 @@ export default {
       required: true,
     },
   },
-  emits: ['update:shopName', 'update:logo', 'update:color'],
+  emits: ['update:shopName', 'update:logo', 'update:color', 'changePage'],
   methods: {
     update(field: 'shopName' | 'logo' | 'color', event: Event) {
       if (field === 'logo')

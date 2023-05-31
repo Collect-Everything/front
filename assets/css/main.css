@@ -37,12 +37,12 @@ input {
   @apply focus:outline-none text-black;
 }
 
-input[type='color']::-webkit-color-swatch-wrapper {
-  padding: 0;
+textarea {
+  @apply focus:outline-none text-black;
 }
 
-select {
-  @apply border border-gray-500 rounded-md h-10 px-4;
+input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
 }
 
 button:disabled {
