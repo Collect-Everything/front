@@ -14,7 +14,7 @@
       {{ $t('invitations.validated.text2') }}
     </span>
 
-    <button class="btn-primary" @click="configShop()">
+    <button class="btn-primary" @click="$router.push('/shopconfig/new')">
       <fa-icon :icon="['fas', 'cog']" />
       <span>{{ $t('invitations.configShop') }}</span>
     </button>
@@ -45,11 +45,6 @@ export default {
     return {
       invitationOk: true,
     }
-  },
-  methods: {
-    configShop() {
-      // TODO
-    },
   },
 }
 </script>

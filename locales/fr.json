@@ -16,7 +16,6 @@
     "passwordPlaceholder": "Au moins 8 caractères",
     "differentPasswords": "Les mots de passe ne correspondent pas",
     "account": "J'ai déjà un compte !",
-    "continue": "Continuer",
     "cardHolder": "Titulaire de carte",
     "expDate": "Date d'expiration",
     "cvc": "CVC",
@@ -25,7 +24,8 @@
   },
   "general": {
     "or": "Ou",
-    "home": "Accueil"
+    "home": "Accueil",
+    "continue": "Continuer"
   },
   "invitations": {
     "title": "Vérifiez votre email",
@@ -44,6 +44,18 @@
       "text1": "Cette invitation n'existe pas ou a déjà été acceptée.",
       "text2": "Essayez de vous connecter à votre compte avec le bouton ci-dessous.",
       "login": "Retour à la connexion"
+    }
+  },
+  "shop": {
+    "config": {
+      "title": "Configuration de votre boutique",
+      "text": "Entrez ici les informations de base de votre boutique.",
+      "shopName": "Nom de la boutique",
+      "logo": "Logo",
+      "colors": "Couleurs",
+      "chooseLogo": "Choisir un logo",
+      "colorsHint": "Cette couleur sera utilisée pour les boutons et accentuations.",
+      "primaryColor": "Couleur primaire"
     }
   }
 }

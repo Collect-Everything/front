@@ -183,7 +183,7 @@
       :disabled="!passwordEquals || password.length < 8"
       @click="showBankingInfos = true"
     >
-      {{ $t('login.continue') }}
+      {{ $t('general.continue') }}
     </button>
     <button v-else class="btn-primary w-full" @click="register">
       <fa-icon :icon="['fas', 'sign-in-alt']" />

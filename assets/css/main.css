@@ -34,7 +34,11 @@ html {
 }
 
 input {
-  @apply focus:outline-none;
+  @apply focus:outline-none text-black;
+}
+
+input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
 }
 
 select {
