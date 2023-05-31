@@ -17,12 +17,18 @@
       </div>
       <div class="w-1/3" />
     </div>
-    <slot v-if="!showNav" />
+    <div v-if="!showNav" class="p-6">
+      <slot />
+    </div>
     <div
       v-else
       class="flex flex-col items-center justify-center space-y-6 pt-6 divide-y divide-gray-300 w-full"
     >
-      <NuxtLink to="/" class="flex items-center justify-center space-x-2">
+      <NuxtLink
+        to="/"
+        class="flex items-center justify-center space-x-2"
+        @click="showNav = false"
+      >
         <fa-icon :icon="['fas', 'home']" />
         <span>{{ $t('general.home') }}</span>
       </NuxtLink>

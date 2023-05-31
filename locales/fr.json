@@ -17,7 +17,13 @@
     "passwordConfirm": "Confirmation du mot de passe",
     "passwordPlaceholder": "Au moins 8 caractères",
     "differentPasswords": "Les mots de passe ne correspondent pas",
-    "account": "J'ai déjà un compte !"
+    "account": "J'ai déjà un compte !",
+    "continue": "Continuer",
+    "cardHolder": "Titulaire de carte",
+    "expDate": "Date d'expiration",
+    "cvc": "CVC",
+    "bankingInfos": "Informations bancaires",
+    "cardNumber": "Numéro de carte"
   },
   "general": {
     "or": "Ou",

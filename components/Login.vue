@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col items-center center-component w-full space-y-6">
-    <div class="flex flex-col items-center space-y-4 w-5/6">
+  <div class="flex flex-col items-center center-component w-full space-y-6 p-6">
+    <div class="flex flex-col items-center space-y-4 w-full">
       <span class="text-xl font-bold">{{ $t('login.login') }}</span>
 
       <div class="flex flex-col space-y-1 text-gray-500 w-full">
@@ -29,23 +29,23 @@
       </div>
     </div>
 
-    <button class="btn-primary w-5/6" @click="login()">
+    <button class="btn-primary w-full" @click="login()">
       <fa-icon :icon="['fas', 'sign-in-alt']" />
       <span>{{ $t('login.login') }}</span>
     </button>
 
-    <div class="flex items-center space-x-2 w-5/6">
+    <div class="flex items-center space-x-2 w-full">
       <div class="border-b w-full border-gray-500" />
       <span class="text-gray-500">{{ $t('general.or') }}</span>
       <div class="border-b w-full border-gray-500" />
     </div>
 
-    <button class="btn-skeleton-primary w-5/6" @click="oauthLogin()">
+    <button class="btn-skeleton-primary w-full" @click="oauthLogin()">
       <fa-icon :icon="['fab', 'google']" />
       <span>{{ $t('login.oauthLogin') }}</span>
     </button>
 
-    <div class="border-b w-5/6 border-gray-300" />
+    <div class="border-b w-full border-gray-300" />
 
     <div class="flex items-center space-x-1">
       <span class="text-sm text-gray-500">{{ $t('login.noAccount') }}</span>
