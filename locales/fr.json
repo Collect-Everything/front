@@ -12,8 +12,6 @@
     "address": "Adresse",
     "zipcode": "Code postal",
     "city": "Ville",
-    "subscription": "Formule d'abonnement",
-    "chooseSubscription": "Choisissez votre formule",
     "passwordConfirm": "Confirmation du mot de passe",
     "passwordPlaceholder": "Au moins 8 caractères",
     "differentPasswords": "Les mots de passe ne correspondent pas",
@@ -28,5 +26,24 @@
   "general": {
     "or": "Ou",
     "home": "Accueil"
+  },
+  "invitations": {
+    "title": "Vérifiez votre email",
+    "text1": "Nous venons d'envoyer un email à l'adresse",
+    "text2": "Veuillez cliquer sur le lien pour vérifier votre adresse email et continuer vers la création de votre boutique.",
+    "resendEmail": "Renvoyer l'email",
+    "contactSUpport": "Contacter le support",
+    "configShop": "Configurer ma boutique",
+    "validated": {
+      "title": "Inscription validée",
+      "text1": "Votre adresse email a bien été vérifiée et votre compte est maintenant actif.",
+      "text2": "Vous pouvez passer à la création & personnalisation de votre boutique dès mainteant en cliquant sur le bouton ci-dessous !"
+    },
+    "error": {
+      "title": "Problème d'invitation",
+      "text1": "Cette invitation n'existe pas ou a déjà été acceptée.",
+      "text2": "Essayez de vous connecter à votre compte avec le bouton ci-dessous.",
+      "login": "Retour à la connexion"
+    }
   }
 }
