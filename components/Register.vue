@@ -1,6 +1,9 @@
 <template>
   <div class="flex flex-col items-center w-full space-y-6">
-    <div class="flex flex-col items-center space-y-4 w-5/6">
+    <div
+      v-if="!showBankingInfos"
+      class="flex flex-col items-center space-y-4 w-full"
+    >
       <span class="text-xl font-bold">{{ $t('login.register') }}</span>
 
       <div class="flex flex-col space-y-1 text-gray-500 w-full">
@@ -51,7 +54,7 @@
         <label for="zipcode">{{ $t('login.zipcode') }}</label>
         <input
           id="zipcode"
-          type="text"
+          type="number"
           class="input"
           :value="zipcode"
           @input="update('zipcode', $event)"
@@ -124,12 +127,70 @@
       </span>
     </div>
 
-    <button class="btn-primary w-5/6" @click="register()">
+    <div v-else class="flex flex-col items-center space-y-4 w-full">
+      <span class="text-xl font-bold">{{ $t('login.bankingInfos') }}</span>
+
+      <div class="flex flex-col space-y-1 text-gray-500 w-full">
+        <label for="cardHolder">{{ $t('login.cardHolder') }}</label>
+        <input
+          id="cardHolder"
+          type="text"
+          class="input"
+          :value="cardHolder"
+          @input="update('cardHolder', $event)"
+        />
+      </div>
+
+      <div class="flex flex-col space-y-1 text-gray-500 w-full">
+        <label for="cardNumber">{{ $t('login.cardNumber') }}</label>
+        <input
+          id="cardNumber"
+          type="text"
+          class="input"
+          :value="cardNumber"
+          @input="update('cardNumber', $event)"
+        />
+      </div>
+
+      <div class="flex justify-between w-full">
+        <div class="flex flex-col space-y-1 text-gray-500 w-2/5">
+          <label for="expDate">{{ $t('login.expDate') }}</label>
+          <input
+            id="expDate"
+            type="date"
+            class="input"
+            :value="expDate"
+            @input="update('expDate', $event)"
+          />
+        </div>
+
+        <div class="flex flex-col space-y-1 text-gray-500 w-2/5">
+          <label for="cvc">{{ $t('login.cvc') }}</label>
+          <input
+            id="cvc"
+            type="number"
+            class="input"
+            :value="cvc"
+            @input="update('cvc', $event)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <button
+      v-if="!showBankingInfos"
+      class="btn-primary w-full"
+      :disabled="!passwordEquals || password.length < 8"
+      @click="showBankingInfos = true"
+    >
+      {{ $t('general.continue') }}
+    </button>
+    <button v-else class="btn-primary w-full" @click="register">
       <fa-icon :icon="['fas', 'sign-in-alt']" />
       <span>{{ $t('login.register') }}</span>
     </button>
 
-    <div class="flex items-center space-x-1">
+    <div v-if="!showBankingInfos" class="flex items-center space-x-1">
       <span class="text-sm text-gray-500">{{ $t('login.account') }}</span>
       <span
         class="text-sm font-semibold"
@@ -177,6 +238,22 @@ export default {
       type: String,
       default: '',
     },
+    cardHolder: {
+      type: String,
+      default: '',
+    },
+    cardNumber: {
+      type: String,
+      default: '',
+    },
+    expDate: {
+      type: String,
+      default: '',
+    },
+    cvc: {
+      type: String,
+      default: '',
+    },
   },
   emits: [
     'update:companyName',
@@ -187,8 +264,17 @@ export default {
     'update:city',
     'update:password',
     'update:passwordConfirm',
+    'update:cardHolder',
+    'update:cardNumber',
+    'update:expDate',
+    'update:cvc',
     'change-page',
   ],
+  data() {
+    return {
+      showBankingInfos: false,
+    }
+  },
   computed: {
     passwordEquals(): boolean {
       return this.password === this.passwordConfirm
@@ -204,7 +290,11 @@ export default {
         | 'zipcode'
         | 'city'
         | 'password'
-        | 'passwordConfirm',
+        | 'passwordConfirm'
+        | 'cardHolder'
+        | 'cardNumber'
+        | 'expDate'
+        | 'cvc',
       event: Event
     ) {
       this.$emit(`update:${field}`, (event.target as HTMLInputElement).value)

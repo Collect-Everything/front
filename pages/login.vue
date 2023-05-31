@@ -15,6 +15,10 @@
     v-model:city="city"
     v-model:password="password"
     v-model:passwordConfirm="passwordConfirm"
+    v-model:cardHolder="cardHolder"
+    v-model:cardNumber="cardNumber"
+    v-model:expDate="expDate"
+    v-model:cvc="cvc"
     @change-page="page = $event"
   />
 </template>
@@ -31,6 +35,10 @@ export default {
       address: '',
       zipcode: '',
       city: '',
+      cardHolder: '',
+      cardNumber: '',
+      expDate: '',
+      cvc: '',
       page: 'login',
     }
   },

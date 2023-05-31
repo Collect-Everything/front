@@ -12,14 +12,68 @@
     "address": "Adresse",
     "zipcode": "Code postal",
     "city": "Ville",
-    "subscription": "Formule d'abonnement",
-    "chooseSubscription": "Choisissez votre formule",
     "passwordConfirm": "Confirmation du mot de passe",
     "passwordPlaceholder": "Au moins 8 caractères",
     "differentPasswords": "Les mots de passe ne correspondent pas",
-    "account": "J'ai déjà un compte !"
+    "account": "J'ai déjà un compte !",
+    "cardHolder": "Titulaire de carte",
+    "expDate": "Date d'expiration",
+    "cvc": "CVC",
+    "bankingInfos": "Informations bancaires",
+    "cardNumber": "Numéro de carte"
   },
   "general": {
-    "or": "Ou"
+    "or": "Ou",
+    "home": "Accueil",
+    "continue": "Continuer",
+    "back": "Retour"
+  },
+  "invitations": {
+    "title": "Vérifiez votre email",
+    "text1": "Nous venons d'envoyer un email à l'adresse",
+    "text2": "Veuillez cliquer sur le lien pour vérifier votre adresse email et continuer vers la création de votre boutique.",
+    "resendEmail": "Renvoyer l'email",
+    "contactSUpport": "Contacter le support",
+    "configShop": "Configurer ma boutique",
+    "validated": {
+      "title": "Inscription validée",
+      "text1": "Votre adresse email a bien été vérifiée et votre compte est maintenant actif.",
+      "text2": "Vous pouvez passer à la création & personnalisation de votre boutique dès mainteant en cliquant sur le bouton ci-dessous !"
+    },
+    "error": {
+      "title": "Problème d'invitation",
+      "text1": "Cette invitation n'existe pas ou a déjà été acceptée.",
+      "text2": "Essayez de vous connecter à votre compte avec le bouton ci-dessous.",
+      "login": "Retour à la connexion"
+    }
+  },
+  "shop": {
+    "config": {
+      "title": "Configuration de votre boutique",
+      "text": "Entrez ici les informations de base de votre boutique.",
+      "shopName": "Nom de la boutique",
+      "logo": "Logo",
+      "colors": "Couleurs",
+      "chooseLogo": "Choisir un logo",
+      "colorsHint": "Cette couleur sera utilisée pour les boutons et accentuations.",
+      "primaryColor": "Couleur primaire",
+      "texts": {
+        "title": "Textes de votre boutique",
+        "text": "Entrez ici les textes, phrases d'accroche et points forts de votre boutique.",
+        "homePage": {
+          "mainSection": "Page d'accueil : Section principale",
+          "advantages": "Avantages boutique (optionnel)"
+        }
+      },
+      "homePage": {
+        "title": "Titre",
+        "description": "Description",
+        "buttonText": "Bouton",
+        "backgroundImage": "Image",
+        "chooseImage": "Choisir une image",
+        "icon": "Icône",
+        "addAdvantage": "Ajouter un autre avantage"
+      }
+    }
   }
 }
