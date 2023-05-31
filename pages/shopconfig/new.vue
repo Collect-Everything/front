@@ -22,7 +22,10 @@
         @click="$refs.logo.click()"
       >
         <fa-icon :icon="['fas', 'upload']" />
-        <span>{{ $t('shop.config.chooseLogo') }}</span>
+        <span>{{ logo.name || $t('shop.config.chooseLogo') }}</span>
+        <span v-if="logo.size" class="text-gray-500">
+          ({{ (logo.size / 1024 / 1024).toFixed(2) }} MB)
+        </span>
       </button>
       <input
         id="logo"
@@ -69,7 +72,7 @@ export default {
   data() {
     return {
       shopName: '',
-      logo: '',
+      logo: {} as File,
       color: '#3C7E44',
     }
   },
