@@ -54,7 +54,13 @@ export default defineNuxtConfig({
       '@fortawesome/fontawesome-svg-core',
       '@fortawesome/free-solid-svg-icons',
       '@fortawesome/free-brands-svg-icons',
-      '@fortawesome/vue-fontawesome'
-    ]
-  }
+      '@fortawesome/vue-fontawesome',
+    ],
+  },
+
+  runtimeConfig: {
+    public: {
+      API_GATEWAY_URL: process.env.API_GATEWAY_URL,
+    },
+  },
 })
