@@ -78,7 +78,9 @@ export default {
       // TODO
     },
     login() {
-      // TODO
+      this.$auth.login(this.email, this.password)
+
+      this.$router.push('/')
     },
     oauthLogin() {
       // TODO

@@ -1,18 +1,29 @@
-import { User } from '~/types/user'
-const runtimeConfig = useRuntimeConfig()
+import { useMainStore } from '~/store'
 
-export default defineNuxtPlugin((nuxtApp: any) => {
+export default defineNuxtPlugin(() => {
+  const runtimeConfig = useRuntimeConfig()
+  const { setUser } = useMainStore()
+
   return {
     provide: {
-      $auth: {
-        login: async (username: string, password: string) => {
-          const res = await fetch(`${runtimeConfig.API_GATEWAY_URL}/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password }),
-          })
+      auth: {
+        login:  (email: string, password: string) => {
+          // const res = await fetch(`${runtimeConfig.API_GATEWAY_URL}/login`, {
+          //   method: 'POST',
+          //   headers: { 'Content-Type': 'application/json' },
+          //   body: JSON.stringify({ email, password }),
+          // })
 
-          const { user, token } = await res.json()
+          // const { user, token } = await res.json()
+
+          const user = {
+            id: 1,
+            name: 'John Doe',
+            email: 'john@doe.com',
+          }
+          const token = '1234567890'
+
+          setUser(user)
 
           return { user, token }
         },
@@ -21,24 +32,18 @@ export default defineNuxtPlugin((nuxtApp: any) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
           })
-        },
-        register: async (username: string, email: string, password: string) => {
-          const res = await fetch(`${runtimeConfig.API_GATEWAY_URL}/register`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, email, password }),
-          })
 
-          const { user, token } = await res.json()
-
-          return { user, token }
+          setUser(null)
         },
-        user: async () => {
+        getUser: async () => {
           const res = await fetch(`${runtimeConfig.API_GATEWAY_URL}/user`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
           })
+
           const { user } = await res.json()
+
+          setUser(user)
 
           return user
         },

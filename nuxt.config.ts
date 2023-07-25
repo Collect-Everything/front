@@ -8,39 +8,14 @@ export default defineNuxtConfig({
     },
   },
 
+  ssr: false,
+
   css: [
-    '@/assets/css/main.css',
+    '~/assets/css/main.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
   ],
 
-  modules: [
-    [
-      '@nuxtjs/i18n',
-      {
-        locales: [
-          {
-            code: 'en',
-            name: 'English',
-            file: 'en.json',
-          },
-          {
-            code: 'fr',
-            name: 'Français',
-            file: 'fr.json',
-          },
-        ],
-        defaultLocale: 'fr',
-        lazy: true,
-        langDir: 'locales',
-        strategy: 'no_prefix',
-        detectBrowserLanguage: {
-          useCookie: true,
-          cookieKey: 'i18n_redirected',
-        },
-        vueI18n: './showcase-front/i18n.config.ts',
-      },
-    ],
-  ],
+  modules: ['@pinia/nuxt'],
 
   postcss: {
     plugins: {
