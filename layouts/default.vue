@@ -1,21 +1,23 @@
 <template>
   <div class="text-black h-screen w-full">
     <div
-      class="flex items-center justify-between border-b border-gray-300 w-full"
+      class="flex items-center justify-between border-b border-gray-300 w-full px-4"
     >
       <div class="w-1/3 flex items-center">
         <fa-icon
           :icon="['fas', 'bars']"
-          class="p-4 text-2xl"
+          class="text-2xl"
           @click="showNav = !showNav"
         />
       </div>
       <div class="w-1/3 flex justify-center">
         <NuxtLink to="/">
-          <img src="@/assets/logo.png" alt="logo" class="h-20" />
+          <img src="~/assets/logo.png" alt="logo" class="h-20" />
         </NuxtLink>
       </div>
-      <div class="w-1/3" />
+      <div class="w-1/3 flex items-center justify-end">
+        <LangDropdown />
+      </div>
     </div>
     <div v-if="!showNav" class="p-6">
       <slot />

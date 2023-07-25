@@ -1,1 +1,79 @@
-{}
+{
+  "general": {
+    "back": "Feedback",
+    "continue": "Continue",
+    "home": "Welcome",
+    "or": "Or"
+  },
+  "invitations": {
+    "configShop": "Configure my store",
+    "contactSUpport": "Contact Support",
+    "error": {
+      "login": "Back to login",
+      "text1": "This invitation does not exist or has already been accepted.",
+      "text2": "Try logging into your account with the button below.",
+      "title": "Invitation problem"
+    },
+    "resendEmail": "resend email",
+    "text1": "We just sent an email to",
+    "text2": "Please click on the link to verify your email address and continue to create your store.",
+    "title": "Check your email",
+    "validated": {
+      "text1": "Your email address has been successfully verified and your account is now active.",
+      "text2": "You can move on to creating",
+      "title": "Registration validated"
+    }
+  },
+  "login": {
+    "account": "I already have an account !",
+    "address": "Address",
+    "bankingInfos": "Banking information",
+    "cardHolder": "card holder",
+    "cardNumber": "Card number",
+    "city": "City",
+    "companyName": "Company Name",
+    "cvc": "HVAC",
+    "differentPasswords": "Passwords do not match",
+    "email": "E-mail",
+    "expDate": "Expiration date",
+    "forgotPassword": "Forgot your password ?",
+    "login": "Log in",
+    "noAccount": "No account yet?",
+    "oauthLogin": "Login with Google",
+    "password": "Password",
+    "passwordConfirm": "Password Confirmation",
+    "passwordPlaceholder": "At least 8 characters",
+    "phone": "Phone",
+    "register": "Register",
+    "zipcode": "Postal code"
+  },
+  "shop": {
+    "config": {
+      "chooseLogo": "Choose a logo",
+      "colors": "Colors",
+      "colorsHint": "This color will be used for buttons and accents.",
+      "homePage": {
+        "addAdvantage": "Add another benefit",
+        "backgroundImage": "Picture",
+        "buttonText": "Button",
+        "chooseImage": "Choose a picture",
+        "description": "Description",
+        "icon": "Icon",
+        "title": "Title"
+      },
+      "logo": "Logo",
+      "primaryColor": "Primary color",
+      "shopName": "Shop name",
+      "text": "Enter your store's basic information here.",
+      "texts": {
+        "homePage": {
+          "advantages": "Shop benefits (optional)",
+          "mainSection": "Home page: Main section"
+        },
+        "text": "Enter the texts, catchphrases and highlights of your shop here.",
+        "title": "Texts from your shop"
+      },
+      "title": "Setting up your store"
+    }
+  }
+}
