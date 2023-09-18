@@ -20,7 +20,7 @@
     "title": "Check your email",
     "validated": {
       "text1": "Your email address has been successfully verified and your account is now active.",
-      "text2": "You can move on to creating",
+      "text2": "You can move on to creation",
       "title": "Registration validated"
     }
   },
