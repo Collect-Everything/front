@@ -57,6 +57,10 @@ button:disabled {
   @apply btn bg-teal-500 !important;
 }
 
+.btn-danger {
+  @apply btn bg-red-500 !important;
+}
+
 .btn-skeleton-primary {
   @apply btn bg-transparent text-teal-500 border border-teal-500 !important;
 }

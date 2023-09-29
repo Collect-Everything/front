@@ -59,7 +59,8 @@
         "chooseImage": "Choose a picture",
         "description": "Description",
         "icon": "Icon",
-        "title": "Title"
+        "title": "Title",
+        "chooseIcon": "Choose an icon"
       },
       "logo": "Logo",
       "primaryColor": "Primary color",

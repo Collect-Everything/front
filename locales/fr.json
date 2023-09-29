@@ -72,7 +72,8 @@
         "backgroundImage": "Image",
         "chooseImage": "Choisir une image",
         "icon": "Icône",
-        "addAdvantage": "Ajouter un autre avantage"
+        "addAdvantage": "Ajouter un autre avantage",
+        "chooseIcon": "Choisissez une icône"
       }
     }
   }

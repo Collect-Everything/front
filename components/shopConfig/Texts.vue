@@ -18,21 +18,25 @@
 
     <div
       v-if="backgroundImageURL"
-      class="flex flex-col items-center justify-center w-full h-96"
-      :style="{
-        backgroundImage: `url(${backgroundImageURL})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }"
+      class="bg-black w-full max-h-96 relative flex items-center justify-center"
     >
-      <div class="flex flex-col items-center space-y-4">
-        <span v-if="title" class="text-4xl font-bold text-white">
-          {{ title }}
-        </span>
-        <span v-if="description" class="text-2xl text-white">
-          {{ description }}
-        </span>
-        <button v-if="buttonText" class="btn-primary">{{ buttonText }}</button>
+      <img
+        :src="backgroundImageURL"
+        alt="test"
+        class="opacity-40 h-96 object-cover"
+      />
+      <div class="absolute">
+        <div class="flex flex-col items-center space-y-4">
+          <span v-if="title" class="text-4xl font-bold text-white">
+            {{ title }}
+          </span>
+          <span v-if="description" class="text-2xl text-white">
+            {{ description }}
+          </span>
+          <button v-if="buttonText" class="btn-primary">
+            {{ buttonText }}
+          </button>
+        </div>
       </div>
     </div>
 
@@ -107,11 +111,18 @@
       class="w-full space-y-4"
     >
       <div
-        class="bg-gray-200 w-full h-40 flex flex-col items-center justify-around"
+        class="bg-gray-200 w-full h-40 flex flex-col items-center justify-around relative"
       >
         <fa-icon v-if="advantage.icon" :icon="['fas', advantage.icon]" />
         <span class="font-semibold">{{ advantage.title }}</span>
         <span>{{ advantage.description }}</span>
+
+        <button
+          class="text-white px-2 py-1 bg-red-500 rounded-full absolute -top-2 -right-2"
+          @click="removeAdvantage(advantage.index)"
+        >
+          <fa-icon :icon="['fas', 'trash-alt']" />
+        </button>
       </div>
 
       <div class="flex flex-col space-y-1 text-gray-500">
@@ -123,13 +134,13 @@
           class="input"
           @change="update('advantages', $event, advantage.index, 'icon')"
         >
-          <!-- TODO : refactor select options (icons not showing) -->
+          <option value="">{{ $t('shop.config.homePage.chooseIcon') }}</option>
           <option
             v-for="faIcon in fontawesomeIcons"
             :key="faIcon"
             :value="faIcon"
           >
-            <fa-icon :icon="['fas', faIcon]" />
+            {{ faIcon }}
           </option>
         </select>
       </div>
@@ -258,6 +269,11 @@ export default {
         this.$emit(`update:${field}`, advantagesCopy)
       } else
         this.$emit(`update:${field}`, (event.target as HTMLInputElement).value)
+    },
+    removeAdvantage(index: number) {
+      const advantagesCopy = [...this.advantages]
+      advantagesCopy.splice(index, 1)
+      this.$emit('update:advantages', advantagesCopy)
     },
   },
 }
