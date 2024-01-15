@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'Collect&verything - Admin',
+      title: 'Collecteverything - Admin',
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
     },
