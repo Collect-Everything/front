@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col items-center center-component w-full space-y-6 p-6">
+  <div
+    class="flex flex-col items-center center-component w-full md:lg:w-1/3 space-y-6 p-6"
+  >
     <div class="flex flex-col items-center space-y-4 w-full">
       <span class="text-xl font-bold">{{ $t('login.login') }}</span>
 
@@ -50,7 +52,7 @@
     <div class="flex items-center space-x-1">
       <span class="text-sm text-gray-500">{{ $t('login.noAccount') }}</span>
       <span
-        class="text-sm font-semibold"
+        class="text-sm font-semibold cursor-pointer"
         @click="$emit('change-page', 'register')"
       >
         {{ $t('login.register') }}
