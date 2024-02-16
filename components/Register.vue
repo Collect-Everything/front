@@ -159,7 +159,7 @@
             <label for="expDate">{{ $t('login.expDate') }}</label>
             <input
               id="expDate"
-              type="date"
+              type="month"
               class="input"
               :value="expDate"
               @input="update('expDate', $event)"
