@@ -50,6 +50,7 @@
               ref="password"
               v-model="password"
               type="password"
+              class="w-full"
               :placeholder="$t('login.passwordPlaceholder')"
               :minlength="8"
             />
@@ -73,6 +74,7 @@
               ref="passwordConfirm"
               v-model="passwordConfirm"
               type="password"
+              class="w-full"
               :minlength="8"
             />
             <fa-icon
