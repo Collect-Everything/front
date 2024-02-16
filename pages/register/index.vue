@@ -11,66 +11,35 @@
           <label for="companyName">{{ $t('login.companyName') }}</label>
           <input
             id="companyName"
+            v-model="companyName"
             type="text"
             class="input"
-            :value="companyName"
-            @input="update('companyName', $event)"
           />
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="email">{{ $t('login.email') }}</label>
-          <input
-            id="email"
-            type="email"
-            class="input"
-            :value="email"
-            @input="update('email', $event)"
-          />
+          <input id="email" v-model="email" type="email" class="input" />
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="phone">{{ $t('login.phone') }}</label>
-          <input
-            id="phone"
-            type="text"
-            class="input"
-            :value="phone"
-            @input="update('phone', $event)"
-          />
+          <input id="phone" v-model="phone" type="text" class="input" />
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="address">{{ $t('login.address') }}</label>
-          <input
-            id="address"
-            type="text"
-            class="input"
-            :value="address"
-            @input="update('address', $event)"
-          />
+          <input id="address" v-model="address" type="text" class="input" />
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="zipcode">{{ $t('login.zipcode') }}</label>
-          <input
-            id="zipcode"
-            type="number"
-            class="input"
-            :value="zipcode"
-            @input="update('zipcode', $event)"
-          />
+          <input id="zipcode" v-model="zipcode" type="number" class="input" />
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="city">{{ $t('login.city') }}</label>
-          <input
-            id="city"
-            type="text"
-            class="input"
-            :value="city"
-            @input="update('city', $event)"
-          />
+          <input id="city" v-model="city" type="text" class="input" />
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
@@ -79,11 +48,10 @@
             <input
               id="password"
               ref="password"
+              v-model="password"
               type="password"
-              :value="password"
               :placeholder="$t('login.passwordPlaceholder')"
               :minlength="8"
-              @input="update('password', $event)"
             />
             <fa-icon
               :icon="['fas', 'eye']"
@@ -103,10 +71,9 @@
             <input
               id="passwordConfirm"
               ref="passwordConfirm"
+              v-model="passwordConfirm"
               type="password"
-              :value="passwordConfirm"
               :minlength="8"
-              @input="update('passwordConfirm', $event)"
             />
             <fa-icon
               :icon="['fas', 'eye']"
@@ -136,10 +103,9 @@
           <label for="cardHolder">{{ $t('login.cardHolder') }}</label>
           <input
             id="cardHolder"
+            v-model="cardHolder"
             type="text"
             class="input"
-            :value="cardHolder"
-            @input="update('cardHolder', $event)"
           />
         </div>
 
@@ -147,34 +113,21 @@
           <label for="cardNumber">{{ $t('login.cardNumber') }}</label>
           <input
             id="cardNumber"
+            v-model="cardNumber"
             type="text"
             class="input"
-            :value="cardNumber"
-            @input="update('cardNumber', $event)"
           />
         </div>
 
         <div class="flex justify-between w-full">
           <div class="flex flex-col space-y-1 text-gray-500 w-2/5">
             <label for="expDate">{{ $t('login.expDate') }}</label>
-            <input
-              id="expDate"
-              type="month"
-              class="input"
-              :value="expDate"
-              @input="update('expDate', $event)"
-            />
+            <input id="expDate" v-model="expDate" type="month" class="input" />
           </div>
 
           <div class="flex flex-col space-y-1 text-gray-500 w-2/5">
             <label for="cvc">{{ $t('login.cvc') }}</label>
-            <input
-              id="cvc"
-              type="number"
-              class="input"
-              :value="cvc"
-              @input="update('cvc', $event)"
-            />
+            <input id="cvc" v-model="cvc" type="number" class="input" />
           </div>
         </div>
       </div>
@@ -196,7 +149,7 @@
         <span class="text-sm text-gray-500">{{ $t('login.account') }}</span>
         <span
           class="text-sm font-semibold cursor-pointer"
-          @click="$emit('change-page', 'login')"
+          @click="$router.push('/login')"
         >
           {{ $t('login.login') }}
         </span>
@@ -207,74 +160,21 @@
 
 <script lang="ts">
 export default {
-  name: 'RegisterComponent',
-  props: {
-    companyName: {
-      type: String,
-      default: '',
-    },
-    email: {
-      type: String,
-      default: '',
-    },
-    phone: {
-      type: String,
-      default: '',
-    },
-    address: {
-      type: String,
-      default: '',
-    },
-    zipcode: {
-      type: String,
-      default: '',
-    },
-    city: {
-      type: String,
-      default: '',
-    },
-    password: {
-      type: String,
-      default: '',
-    },
-    passwordConfirm: {
-      type: String,
-      default: '',
-    },
-    cardHolder: {
-      type: String,
-      default: '',
-    },
-    cardNumber: {
-      type: String,
-      default: '',
-    },
-    expDate: {
-      type: String,
-      default: '',
-    },
-    cvc: {
-      type: String,
-      default: '',
-    },
-  },
-  emits: [
-    'update:companyName',
-    'update:email',
-    'update:phone',
-    'update:address',
-    'update:zipcode',
-    'update:city',
-    'update:password',
-    'update:passwordConfirm',
-    'update:cardHolder',
-    'update:cardNumber',
-    'update:expDate',
-    'update:cvc',
-    'change-page',
-  ],
   data() {
     return {
+      email: '',
+      password: '',
+      passwordConfirm: '',
+      companyName: '',
+      phone: '',
+      address: '',
+      zipcode: '',
+      city: '',
+      cardHolder: '',
+      cardNumber: '',
+      expDate: '',
+      cvc: '',
+      page: 'login',
       showBankingInfos: false,
     }
   },
@@ -284,26 +184,23 @@ export default {
     },
   },
   methods: {
-    update(
-      field:
-        | 'companyName'
-        | 'email'
-        | 'phone'
-        | 'address'
-        | 'zipcode'
-        | 'city'
-        | 'password'
-        | 'passwordConfirm'
-        | 'cardHolder'
-        | 'cardNumber'
-        | 'expDate'
-        | 'cvc',
-      event: Event
-    ) {
-      this.$emit(`update:${field}`, (event.target as HTMLInputElement).value)
-    },
-    register() {
-      // TODO
+    async register() {
+      await $fetch('http://localhost:3100/api/v1/admins/register', {
+        method: 'POST',
+        body: {
+          companyName: this.companyName,
+          email: this.email,
+          phone: this.phone,
+          address: this.address,
+          zipcode: this.zipcode,
+          city: this.city,
+          password: this.password,
+          cardHolder: this.cardHolder,
+          cardNumber: this.cardNumber,
+          expDate: this.expDate,
+          cvc: this.cvc,
+        },
+      })
     },
   },
 }

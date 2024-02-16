@@ -7,24 +7,12 @@
 
       <div class="flex flex-col space-y-1 text-gray-500 w-full">
         <label for="email">{{ $t('login.email') }}</label>
-        <input
-          id="email"
-          type="email"
-          class="input"
-          :value="email"
-          @input="update('email', $event)"
-        />
+        <input id="email" v-model="email" type="email" class="input" />
       </div>
 
       <div class="flex flex-col space-y-1 text-gray-500 w-full">
         <label for="password">{{ $t('login.password') }}</label>
-        <input
-          id="password"
-          type="password"
-          class="input"
-          :value="password"
-          @input="update('password', $event)"
-        />
+        <input id="password" v-model="password" type="password" class="input" />
         <span class="text-xs text-black text-right" @click="forgotPassword()">
           {{ $t('login.forgotPassword') }}
         </span>
@@ -53,7 +41,7 @@
       <span class="text-sm text-gray-500">{{ $t('login.noAccount') }}</span>
       <span
         class="text-sm font-semibold cursor-pointer"
-        @click="$emit('change-page', 'register')"
+        @click="$router.push('/register')"
       >
         {{ $t('login.register') }}
       </span>
@@ -63,18 +51,23 @@
 
 <script lang="ts">
 export default {
-  name: 'LoginComponent',
-  props: {
-    email: {
-      type: String,
-      default: '',
-    },
-    password: {
-      type: String,
-      default: '',
-    },
+  data() {
+    return {
+      email: '',
+      password: '',
+      passwordConfirm: '',
+      companyName: '',
+      phone: '',
+      address: '',
+      zipcode: '',
+      city: '',
+      cardHolder: '',
+      cardNumber: '',
+      expDate: '',
+      cvc: '',
+      page: 'login',
+    }
   },
-  emits: ['update:email', 'update:password', 'change-page'],
   methods: {
     forgotPassword() {
       // TODO
@@ -86,9 +79,6 @@ export default {
     },
     oauthLogin() {
       // TODO
-    },
-    update(field: 'email' | 'password', event: Event) {
-      this.$emit(`update:${field}`, (event.target as HTMLInputElement).value)
     },
   },
 }
