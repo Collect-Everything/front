@@ -97,7 +97,7 @@ export default {
   data() {
     return {
       email: '',
-      token: null,
+      token: '',
       password: '',
       passwordConfirm: '',
     }
