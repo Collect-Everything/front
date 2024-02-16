@@ -45,7 +45,8 @@
     "passwordPlaceholder": "At least 8 characters",
     "phone": "Phone",
     "register": "Register",
-    "zipcode": "Postal code"
+    "zipcode": "Postal code",
+    "resetPassword": "Reset my password"
   },
   "shop": {
     "config": {

@@ -20,7 +20,8 @@
     "expDate": "Date d'expiration",
     "cvc": "CVC",
     "bankingInfos": "Informations bancaires",
-    "cardNumber": "Numéro de carte"
+    "cardNumber": "Numéro de carte",
+    "resetPassword": "Réinitialiser mon mot de passe"
   },
   "general": {
     "or": "Ou",

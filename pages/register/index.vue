@@ -148,7 +148,7 @@
       <div v-if="!showBankingInfos" class="flex items-center space-x-1">
         <span class="text-sm text-gray-500">{{ $t('login.account') }}</span>
         <span
-          class="text-sm font-semibold cursor-pointer"
+          class="text-sm font-semibold cursor-pointer text-teal-500"
           @click="$router.push('/login')"
         >
           {{ $t('login.login') }}
@@ -174,7 +174,6 @@ export default {
       cardNumber: '',
       expDate: '',
       cvc: '',
-      page: 'login',
       showBankingInfos: false,
     }
   },
