@@ -10,7 +10,7 @@
         </div>
       </div>
 
-      <button class="btn-primary w-full" @click="sendResetEmail()">
+      <button class="btn-secondary w-full" @click="sendResetEmail()">
         <fa-icon :icon="['fas', 'rotate']" />
         <span>{{ $t('login.resetPassword') }}</span>
       </button>
@@ -81,7 +81,7 @@
       </div>
 
       <button
-        class="btn-primary w-full"
+        class="btn-secondary w-full"
         :disabled="!passwordEquals || password.length < 8"
         @click="resetPassword()"
       >

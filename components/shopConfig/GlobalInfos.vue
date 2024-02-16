@@ -66,7 +66,7 @@
         <span>{{ $t('shop.config.colorsHint') }}</span>
       </div>
 
-      <button class="btn-primary w-full" @click="$emit('changePage', 'texts')">
+      <button class="btn-secondary w-full" @click="$emit('changePage', 'texts')">
         {{ $t('general.continue') }}
       </button>
     </div>

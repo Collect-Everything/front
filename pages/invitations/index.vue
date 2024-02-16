@@ -11,12 +11,12 @@
     </span>
 
     <div class="flex space-x-4 text-sm">
-      <button class="btn-primary" @click="resendEmail()">
+      <button class="btn-secondary" @click="resendEmail()">
         <fa-icon :icon="['fas', 'paper-plane']" />
         <span>{{ $t('invitations.resendEmail') }}</span>
       </button>
 
-      <button class="btn-skeleton-primary" @click="contactSupport()">
+      <button class="btn-skeleton-secondary" @click="contactSupport()">
         <fa-icon :icon="['fas', 'phone']" />
         <span>{{ $t('invitations.contactSUpport') }}</span>
       </button>

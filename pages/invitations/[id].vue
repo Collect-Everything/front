@@ -14,7 +14,7 @@
       {{ $t('invitations.validated.text2') }}
     </span>
 
-    <button class="btn-primary" @click="$router.push('/shopconfig/new')">
+    <button class="btn-secondary" @click="$router.push('/shopconfig/new')">
       <fa-icon :icon="['fas', 'cog']" />
       <span>{{ $t('invitations.configShop') }}</span>
     </button>
@@ -32,7 +32,7 @@
       {{ $t('invitations.error.text2') }}
     </span>
 
-    <button class="btn-primary" @click="$router.push('/login')">
+    <button class="btn-secondary" @click="$router.push('/login')">
       <fa-icon :icon="['fas', 'sign-in-alt']" />
       <span>{{ $t('invitations.error.login') }}</span>
     </button>

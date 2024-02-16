@@ -54,7 +54,11 @@ button:disabled {
 }
 
 .btn-primary {
-  @apply btn bg-teal-500 !important;
+  @apply btn bg-primary !important;
+}
+
+.btn-secondary {
+  @apply btn bg-secondary !important;
 }
 
 .btn-danger {
@@ -62,7 +66,11 @@ button:disabled {
 }
 
 .btn-skeleton-primary {
-  @apply btn bg-transparent text-teal-500 border border-teal-500 !important;
+  @apply btn bg-transparent text-primary border border-primary !important;
+}
+
+.btn-skeleton-secondary {
+  @apply btn bg-transparent text-secondary border border-secondary !important;
 }
 
 .center-component {

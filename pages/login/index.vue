@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <button class="btn-primary w-full" @click="login()">
+    <button class="btn-secondary w-full" @click="login()">
       <fa-icon :icon="['fas', 'sign-in-alt']" />
       <span>{{ $t('login.login') }}</span>
     </button>
@@ -33,7 +33,7 @@
       <div class="border-b w-full border-gray-500" />
     </div>
 
-    <button class="btn-skeleton-primary w-full" @click="oauthLogin()">
+    <button class="btn-skeleton-secondary w-full" @click="oauthLogin()">
       <fa-icon :icon="['fab', 'google']" />
       <span>{{ $t('login.oauthLogin') }}</span>
     </button>
@@ -43,7 +43,7 @@
     <div class="flex items-center space-x-1">
       <span class="text-sm text-gray-500">{{ $t('login.noAccount') }}</span>
       <span
-        class="text-sm font-semibold cursor-pointer text-teal-500"
+        class="text-sm font-semibold cursor-pointer text-secondary"
         @click="$router.push('/register')"
       >
         {{ $t('login.register') }}

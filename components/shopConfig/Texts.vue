@@ -34,7 +34,7 @@
             <span v-if="description" class="text-2xl text-white">
               {{ description }}
             </span>
-            <button v-if="buttonText" class="btn-primary">
+            <button v-if="buttonText" class="btn-secondary">
               {{ buttonText }}
             </button>
           </div>
@@ -187,13 +187,13 @@
 
       <div class="flex space-x-4 w-full">
         <button
-          class="btn-skeleton-primary w-full"
+          class="btn-skeleton-secondary w-full"
           @click="$emit('changePage', 'globalInfos')"
         >
           {{ $t('general.back') }}
         </button>
         <button
-          class="btn-primary w-full"
+          class="btn-secondary w-full"
           @click="$emit('changePage', 'contactInfos')"
         >
           {{ $t('general.continue') }}

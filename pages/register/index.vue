@@ -136,13 +136,13 @@
 
       <button
         v-if="!showBankingInfos"
-        class="btn-primary w-full"
+        class="btn-secondary w-full"
         :disabled="!passwordEquals || password.length < 8"
         @click="showBankingInfos = true"
       >
         {{ $t('general.continue') }}
       </button>
-      <button v-else class="btn-primary w-full" @click="register">
+      <button v-else class="btn-secondary w-full" @click="register">
         <fa-icon :icon="['fas', 'sign-in-alt']" />
         <span>{{ $t('login.register') }}</span>
       </button>
@@ -150,7 +150,7 @@
       <div v-if="!showBankingInfos" class="flex items-center space-x-1">
         <span class="text-sm text-gray-500">{{ $t('login.account') }}</span>
         <span
-          class="text-sm font-semibold cursor-pointer text-teal-500"
+          class="text-sm font-semibold cursor-pointer text-secondary"
           @click="$router.push('/login')"
         >
           {{ $t('login.login') }}

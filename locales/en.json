@@ -3,7 +3,9 @@
     "back": "Feedback",
     "continue": "Continue",
     "home": "Welcome",
-    "or": "Or"
+    "or": "Or",
+    "prices": "Prices",
+    "about": "About"
   },
   "invitations": {
     "configShop": "Configure my store",
