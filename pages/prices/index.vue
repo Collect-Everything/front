@@ -1,13 +1,13 @@
 <template>
   <div class="flex flex-col items-center space-y-6">
     <div class="w-4/5 flex flex-col space-y-4">
-      <span class="text-2xl text-gray-700 text-center">
+      <span class="lg:text-2xl text-gray-700 text-center">
         {{ $t('prices.title') }}
       </span>
-      <span class="text-6xl text-center font-semibold title">
+      <span class="lg:text-6xl text-2xl text-center font-semibold title">
         {{ $t('prices.subtitle') }}
       </span>
-      <span class="text-xl text-center">
+      <span class="lg:text-xl text-center">
         {{ $t('prices.description') }}
       </span>
     </div>
@@ -35,6 +35,20 @@
         :is-monthly="isMonthly"
       />
     </div>
+
+    <div class="flex flex-col justify-center w-full lg:md:w-2/3">
+      <span class="lg:text-xl text-center font-semibold"
+        >Questions fréquentes</span
+      >
+      <div class="flex flex-col space-y-4 justify-center w-full mt-5">
+        <QuestionPrice
+          v-for="question in questions"
+          :key="question.id"
+          :question="question"
+          @open="open($event)"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -54,7 +68,37 @@ export default {
           btnAction: () => this.$router.push('/register'),
         },
       ],
+      questions: [
+        {
+          id: 1,
+          question: 'Comment puis-je payer ?',
+          answer: 'Vous pouvez payer par carte bancaire ou par virement.',
+          isOpen: false,
+        },
+        {
+          id: 2,
+          question: 'Puis-je changer de formule à tout moment ?',
+          answer: 'Oui, vous pouvez changer de formule à tout moment.',
+          isOpen: false,
+        },
+        {
+          id: 3,
+          question: 'Puis-je annuler mon abonnement ?',
+          answer: 'Oui, vous pouvez annuler votre abonnement à tout moment.',
+          isOpen: false,
+        },
+      ],
     }
+  },
+  methods: {
+    open(id: number) {
+      this.questions = this.questions.map((question) => {
+        if (question.id === id) question.isOpen = !question.isOpen
+        else question.isOpen = false
+
+        return question
+      })
+    },
   },
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col justify-between rounded border border-green-600 bg-neutral-100 w-1/3"
+    class="flex flex-col justify-between rounded border border-green-600 bg-neutral-100 w-full lg:md:w-1/3"
   >
     <div class="flex flex-col p-4 w-full border-b border-gray-200 space-y-4">
       <span class="text-green-600 text-2xl">{{ title }}</span>
