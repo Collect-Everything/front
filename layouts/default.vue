@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <div v-if="!showNav" class="p-6">
+    <div v-if="!showNav" class="py-6">
       <slot />
     </div>
     <div
