@@ -28,7 +28,6 @@
     "home": "Accueil",
     "continue": "Continuer",
     "back": "Retour",
-    "prices": "Tarifs",
     "about": "A propos"
   },
   "invitations": {
@@ -79,5 +78,14 @@
         "chooseIcon": "Choisissez une icône"
       }
     }
+  },
+  "prices": {
+    "subtitle": "Commencez gratuitement, puis payez seulement si ça vous plaît",
+    "title": "Tarifs",
+    "description": "Essayez Collect&Verything gratuitement pendant 14 jours",
+    "monthly": "par mois",
+    "advantages": "Tous les avantages :",
+    "monthlyPrices": "Tarifs mensuels",
+    "yearly": "par an"
   }
 }

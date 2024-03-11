@@ -1,22 +1,27 @@
 <template>
   <div class="flex flex-col items-center space-y-6">
     <div class="w-4/5 flex flex-col space-y-4">
-      <span class="text-2xl text-gray-700 text-center">Tarifs</span>
+      <span class="text-2xl text-gray-700 text-center">
+        {{ $t('prices.title') }}
+      </span>
       <span class="text-6xl text-center font-semibold title">
-        <!-- {{ $t('prices.subtitle') }} -->
-        Commencez gratuitement, puis payez seulement si ça vous plait
+        {{ $t('prices.subtitle') }}
       </span>
       <span class="text-xl text-center">
-        Essayez Collect&Verything gratuitement pendant 14 jours
+        {{ $t('prices.description') }}
       </span>
     </div>
+
     <div class="flex items-center space-x-2 justify-center">
       <label class="switch">
         <input id="switch" v-model="isMonthly" type="checkbox" />
         <span class="slider round" />
       </label>
-      <label for="switch" class="text-sm select-none">Tarifs mensuels</label>
+      <label for="switch" class="text-sm select-none">
+        {{ $t('prices.monthlyPrices') }}
+      </label>
     </div>
+
     <div class="flex space-x-4 justify-center w-full">
       <PriceCard
         v-for="subscription in subscriptions"
@@ -25,9 +30,9 @@
         :subtitle="subscription.subtitle"
         :price="isMonthly ? subscription.price : subscription.price * 12"
         :advantages="subscription.advantages"
-        :btnText="subscription.btnText"
-        :btnAction="subscription.btnAction"
-        :isMonthly="isMonthly"
+        :btn-text="subscription.btnText"
+        :btn-action="subscription.btnAction"
+        :is-monthly="isMonthly"
       />
     </div>
   </div>
@@ -51,6 +56,5 @@ export default {
       ],
     }
   },
-  methods: {},
 }
 </script>

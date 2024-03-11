@@ -4,7 +4,6 @@
     "continue": "Continue",
     "home": "Welcome",
     "or": "Or",
-    "prices": "Prices",
     "about": "About"
   },
   "invitations": {
@@ -79,5 +78,14 @@
       },
       "title": "Setting up your store"
     }
+  },
+  "prices": {
+    "advantages": "All the advantages:",
+    "description": "Try Collect",
+    "monthly": "per month",
+    "monthlyPrices": "Monthly rates",
+    "subtitle": "Start for free, then pay only if you like it",
+    "title": "Prices",
+    "yearly": "per year"
   }
 }

@@ -8,11 +8,13 @@
       <hr />
       <div class="flex items-end space-x-2">
         <span class="text-4xl">{{ price }} €</span>
-        <span class="text-sm">{{ isMonthly ? 'par mois' : 'par an' }}</span>
+        <span class="text-sm">
+          {{ isMonthly ? $t('prices.monthly') : $t('prices.yearly') }}
+        </span>
       </div>
     </div>
     <div class="flex flex-col p-4 w-full space-y-4">
-      <span>Tous les avantages :</span>
+      <span>{{ $t('prices.advantages') }}</span>
       <div class="flex flex-col space-y-2">
         <div
           v-for="advantage in advantages"

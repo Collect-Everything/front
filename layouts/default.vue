@@ -34,7 +34,7 @@
           </NuxtLink>
 
           <NuxtLink to="/prices" class="text-neutral-500">
-            <span>{{ $t('general.prices') }}</span>
+            <span>{{ $t('prices.title') }}</span>
           </NuxtLink>
 
           <NuxtLink to="/about" class="text-neutral-500">
