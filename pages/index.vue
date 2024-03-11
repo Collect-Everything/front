@@ -5,14 +5,13 @@
     >
       <div class="flex flex-col space-y-6">
         <span class="text-2xl lg:text-5xl title font-semibold">
-          Votre boutique e-commerce en quelques clics
+          {{ $t('home.title') }}
         </span>
         <span class="text-xl text-neutral-600">
-          Développez votre commerce en ligne grâce à Collect&verything en
-          proposant vos services de Click&Collect.
+          {{ $t('home.subtitle') }}
         </span>
         <button class="btn-secondary w-fit" @click="$router.push('/about')">
-          En savoir plus
+          {{ $t('home.learnMore') }}
         </button>
       </div>
 
@@ -22,11 +21,10 @@
     <div class="bg-[#124E4A] text-white flex justify-center w-full p-6">
       <div class="flex flex-col items-center space-y-6 w-full lg:w-1/3">
         <span class="text-xl title text-center">
-          Rejoignez notre communauté et restez informé
+          {{ $t('home.newsletter') }}
         </span>
         <span class="text-center">
-          Inscrivez-vous pour recevoir nos dernières fonctionnalités, offres
-          spéciales et conseils exclusifs.
+          {{ $t('home.newsletterDescription') }}
         </span>
 
         <div class="flex flex-col items-center space-y-2 w-full">
@@ -36,9 +34,13 @@
               placeholder="Entrez votre e-mail"
               class="input w-2/3"
             />
-            <button class="btn-secondary w-1/3">S'abonner</button>
+            <button class="btn-secondary w-1/3">
+              {{ $t('home.subscribe') }}
+            </button>
           </div>
-          <span class="text-sm">Rejoignez-nous dès maintenant !</span>
+          <span class="text-sm">
+            {{ $t('home.joinNow') }}
+          </span>
         </div>
       </div>
     </div>

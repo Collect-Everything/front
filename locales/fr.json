@@ -86,6 +86,26 @@
     "monthly": "par mois",
     "advantages": "Tous les avantages :",
     "monthlyPrices": "Tarifs mensuels",
-    "yearly": "par an"
+    "yearly": "par an",
+    "faq": "Questions fréquentes",
+    "questions": {
+      "1": "Comment puis-je payer ?",
+      "2": "Puis-je changer de formule à tout moment ?",
+      "3": "Puis-je annuler mon abonnement ?"
+    },
+    "answers": {
+      "1": "Vous pouvez payer par carte bancaire ou par virement.",
+      "2": "Oui, vous pouvez changer de formule à tout moment.",
+      "3": "Oui, vous pouvez annuler votre abonnement à tout moment."
+    }
+  },
+  "home": {
+    "title": "Votre boutique e-commerce en quelques clics",
+    "subtitle": "Développez votre commerce en ligne grâce à Collect&verything en proposant vos services de Click&Collect.",
+    "learnMore": "En savoir plus",
+    "newsletter": "Rejoignez notre communauté et restez informé",
+    "newsletterDescription": "Inscrivez-vous pour recevoir nos dernières fonctionnalités, offres spéciales et conseils exclusifs.",
+    "subscribe": "S'abonner",
+    "joinNow": "Rejoignez-nous dès maintenant !"
   }
 }

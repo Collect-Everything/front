@@ -37,9 +37,9 @@
     </div>
 
     <div class="flex flex-col justify-center w-full lg:md:w-2/3">
-      <span class="lg:text-xl text-center font-semibold"
-        >Questions fréquentes</span
-      >
+      <span class="lg:text-xl text-center font-semibold">
+        {{ $t('prices.faq') }}
+      </span>
       <div class="flex flex-col space-y-4 justify-center w-full mt-5">
         <QuestionPrice
           v-for="question in questions"
@@ -71,20 +71,20 @@ export default {
       questions: [
         {
           id: 1,
-          question: 'Comment puis-je payer ?',
-          answer: 'Vous pouvez payer par carte bancaire ou par virement.',
+          question: this.$t('prices.questions.1'),
+          answer: this.$t('prices.answers.1'),
           isOpen: false,
         },
         {
           id: 2,
-          question: 'Puis-je changer de formule à tout moment ?',
-          answer: 'Oui, vous pouvez changer de formule à tout moment.',
+          question: this.$t('prices.questions.2'),
+          answer: this.$t('prices.answers.2'),
           isOpen: false,
         },
         {
           id: 3,
-          question: 'Puis-je annuler mon abonnement ?',
-          answer: 'Oui, vous pouvez annuler votre abonnement à tout moment.',
+          question: this.$t('prices.questions.3'),
+          answer: this.$t('prices.answers.3'),
           isOpen: false,
         },
       ],
