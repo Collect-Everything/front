@@ -28,7 +28,7 @@
     "home": "Accueil",
     "continue": "Continuer",
     "back": "Retour",
-    "about": "A propos",
+    "about": "À propos",
     "save": "Enregistrer"
   },
   "invitations": {
@@ -114,5 +114,11 @@
     "seeShop": "Voir la boutique",
     "subscriptionWarning": "Votre période d'essai se finit dans {nbDays} jours, passé ce délai votre boutique sera désactivée si vous ne passez pas à la formule d'abonnement supérieur.",
     "changeSubscription": "Changer de formule d'abonnement"
+  },
+  "about": {
+    "about-us": "Qui sommes-nous ?",
+    "about-us-description": "Collect&verything est une start-up dédiée à la création d'une solution novatrice dans le domaine du commerce en ligne. Nous sommes une équipe passionnée de développeurs, de créateurs et d'entrepreneurs engagés à faciliter le processus d'achat et de vente. Guidés par notre vision de soutenir les petites entreprises et de revitaliser les liens entre les entreprises et leurs clients, nous avons créé une application de click and collect offrant une alternative sécurisée et pratique dans le contexte actuel.",
+    "our-mission": "Que proposons-nous ?",
+    "our-mission-description": "Nous proposons une solution complète pour les commerçants désireux de se lancer dans le commerce en ligne tout en conservant le contact humain avec leur clientèle. Notre application de click and collect permet aux utilisateurs de parcourir les produits disponibles, de passer leurs commandes en ligne et de les récupérer ultérieurement en magasin, éliminant ainsi la nécessité de faire la queue ou d'entrer en contact physique avec le personnel de vente. Pour les commerçants, notre plateforme offre une interface conviviale pour gérer les commandes, intégrer leurs systèmes de gestion des stocks et garantir la sécurité des données personnelles de leurs clients. Avec Collect&verything, nous offrons une solution complète et sécurisée pour répondre aux défis actuels du commerce de détail, tout en soutenant les petites entreprises dans leur parcours vers la reprise et la croissance."
   }
 }

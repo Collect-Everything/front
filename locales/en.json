@@ -114,5 +114,11 @@
     "seeShop": "View the store",
     "subscriptionWarning": "Your trial period ends in {nbDays} days, after this period your store will be deactivated if you do not upgrade to the higher subscription plan.",
     "title": "My store"
+  },
+  "about": {
+    "about-us": "Who are we ?",
+    "about-us-description": "Collect&verything is a start-up dedicated to creating an innovative solution in the field of online commerce. \nWe are a passionate team of developers, creators and entrepreneurs committed to making the buying and selling process easier. \nGuided by our vision to support small businesses and revitalize the connections between businesses and their customers, we have created a click and collect app offering a secure and convenient alternative in the current context.",
+    "our-mission": "What do we offer?",
+    "our-mission-description": "We offer a complete solution for merchants wishing to launch into online commerce while maintaining human contact with their customers. \nOur click and collect app allows users to browse available products, place their orders online and later collect them in store, eliminating the need to queue or make physical contact with sales staff. \nFor merchants, our platform provides a user-friendly interface to manage orders, integrate their inventory management systems and ensure the security of their customers' personal data. \nWith Collect&verything, we offer a comprehensive and secure solution to address today's retail challenges, while supporting small businesses on their journey to recovery and growth."
   }
 }
