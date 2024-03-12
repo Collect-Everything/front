@@ -23,8 +23,10 @@
       <a href="/prices" class="text-secondary underline text-sm">
         {{ $t('my-account.changeSubscription') }}
       </a>
-      <div class="flex flex-col w-2/5 space-y-2">
-        <span class="text-xl text-neutral-700">Identité visuelle</span>
+      <div class="flex flex-col lg:md:w-2/5 w-full space-y-2">
+        <span class="text-xl text-neutral-700">
+          {{ $t('my-account.visual-identity') }}
+        </span>
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="shopName">{{ $t('shop.config.shopName') }}</label>
           <input id="shopName" v-model="shopName" type="text" class="input" />
@@ -78,9 +80,9 @@
       </div>
     </div>
     <hr class="text-neutral-700 w-4/5" />
-    <div class="flex w-4/5">
+    <div class="flex w-4/5 flex-col lg:md:flex-row space-y-4 lg:md:space-y-0">
       <div
-        class="flex flex-col w-full space-y-4 border-r border-neutral-200 pr-6"
+        class="flex flex-col w-full space-y-4 lg:md:border-r lg:md:border-neutral-200 pr-6"
       >
         <div class="w-full">
           <span class="font-bold">
@@ -167,7 +169,7 @@
           />
         </div>
       </div>
-      <div class="flex flex-col w-full pl-6 space-y-6">
+      <div class="flex flex-col w-full lg:md:pl-6 space-y-6">
         <div class="w-full">
           <span class="font-bold">
             {{ $t('shop.config.texts.homePage.advantages') }}

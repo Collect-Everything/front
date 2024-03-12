@@ -113,7 +113,8 @@
     "title": "Ma boutique",
     "seeShop": "Voir la boutique",
     "subscriptionWarning": "Votre période d'essai se finit dans {nbDays} jours, passé ce délai votre boutique sera désactivée si vous ne passez pas à la formule d'abonnement supérieur.",
-    "changeSubscription": "Changer de formule d'abonnement"
+    "changeSubscription": "Changer de formule d'abonnement",
+    "visual-identity": "Identité visuelle"
   },
   "about": {
     "about-us": "Qui sommes-nous ?",
