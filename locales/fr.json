@@ -28,7 +28,8 @@
     "home": "Accueil",
     "continue": "Continuer",
     "back": "Retour",
-    "about": "A propos"
+    "about": "A propos",
+    "save": "Enregistrer"
   },
   "invitations": {
     "title": "Vérifiez votre email",
@@ -107,5 +108,11 @@
     "newsletterDescription": "Inscrivez-vous pour recevoir nos dernières fonctionnalités, offres spéciales et conseils exclusifs.",
     "subscribe": "S'abonner",
     "joinNow": "Rejoignez-nous dès maintenant !"
+  },
+  "my-account": {
+    "title": "Ma boutique",
+    "seeShop": "Voir la boutique",
+    "subscriptionWarning": "Votre période d'essai se finit dans {nbDays} jours, passé ce délai votre boutique sera désactivée si vous ne passez pas à la formule d'abonnement supérieur.",
+    "changeSubscription": "Changer de formule d'abonnement"
   }
 }

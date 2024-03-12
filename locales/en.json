@@ -4,7 +4,8 @@
     "continue": "Continue",
     "home": "Welcome",
     "or": "Or",
-    "about": "About"
+    "about": "About",
+    "save": "Save"
   },
   "invitations": {
     "configShop": "Configure my store",
@@ -107,5 +108,11 @@
     "subscribe": "Subscribe",
     "subtitle": "Develop your online business with Collect",
     "title": "Your e-commerce store in a few clicks"
+  },
+  "my-account": {
+    "changeSubscription": "Change subscription plan",
+    "seeShop": "View the store",
+    "subscriptionWarning": "Your trial period ends in {nbDays} days, after this period your store will be deactivated if you do not upgrade to the higher subscription plan.",
+    "title": "My store"
   }
 }
