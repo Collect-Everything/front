@@ -32,7 +32,7 @@
     "save": "Enregistrer"
   },
   "invitations": {
-    "title": "Vérifiez votre email",
+    "title": "Vérifiez votre boîte mail",
     "text1": "Nous venons d'envoyer un email à l'adresse",
     "text2": "Veuillez cliquer sur le lien pour vérifier votre adresse email et continuer vers la création de votre boutique.",
     "resendEmail": "Renvoyer l'email",
