@@ -15,7 +15,7 @@
         </button>
       </div>
 
-      <img src="@/assets/images/BrowserWindow.png" alt="Browser Window" />
+      <img src="~/assets/images/BrowserWindow.png" alt="Browser Window" />
     </div>
 
     <div class="bg-[#124E4A] text-white flex justify-center w-full p-6">
