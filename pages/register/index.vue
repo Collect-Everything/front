@@ -1,45 +1,118 @@
 <template>
   <div class="flex justify-center w-full">
     <div class="flex flex-col items-center sm:w-full md:lg:w-1/2 space-y-6">
+      <span class="text-xl font-bold">{{ $t('login.register') }}</span>
+
       <div
-        v-if="!showBankingInfos"
+        v-if="page === 'company'"
         class="flex flex-col items-center space-y-4 w-full"
       >
-        <span class="text-xl font-bold">{{ $t('login.register') }}</span>
+        <span class="text-md font-semibold">{{ $t('login.companyInfo') }}</span>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="companyName">{{ $t('login.companyName') }}</label>
           <input
             id="companyName"
-            v-model="companyName"
+            v-model="company.name"
             type="text"
             class="input"
           />
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
-          <label for="email">{{ $t('login.email') }}</label>
-          <input id="email" v-model="email" type="email" class="input" />
+          <label for="emailCompany">{{ $t('login.email') }}</label>
+          <input
+            id="emailCompany"
+            v-model="company.email"
+            type="email"
+            class="input"
+          />
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="phone">{{ $t('login.phone') }}</label>
-          <input id="phone" v-model="phone" type="text" class="input" />
+          <input id="phone" v-model="company.phone" type="text" class="input" />
         </div>
 
-        <div class="flex flex-col space-y-1 text-gray-500 w-full">
-          <label for="address">{{ $t('login.address') }}</label>
-          <input id="address" v-model="address" type="text" class="input" />
+        <div class="flex space-x-4 w-full">
+          <div class="flex flex-col space-y-1 text-gray-500">
+            <label for="address">{{ $t('login.streetNumber') }}</label>
+            <input
+              id="address"
+              v-model="company.streetNumber"
+              type="text"
+              class="input"
+            />
+          </div>
+
+          <div class="flex flex-col space-y-1 text-gray-500 w-11/12">
+            <label for="address">{{ $t('login.street') }}</label>
+            <input
+              id="address"
+              v-model="company.street"
+              type="text"
+              class="input"
+            />
+          </div>
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="zipcode">{{ $t('login.zipcode') }}</label>
-          <input id="zipcode" v-model="zipcode" type="number" class="input" />
+          <input
+            id="zipcode"
+            v-model="company.postalCode"
+            type="text"
+            class="input"
+          />
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="city">{{ $t('login.city') }}</label>
-          <input id="city" v-model="city" type="text" class="input" />
+          <input id="city" v-model="company.city" type="text" class="input" />
+        </div>
+
+        <div class="flex flex-col space-y-1 text-gray-500 w-full">
+          <label for="country">{{ $t('login.country') }}</label>
+          <input
+            id="country"
+            v-model="company.country"
+            type="text"
+            class="input"
+          />
+        </div>
+      </div>
+
+      <div v-else class="flex flex-col items-center space-y-4 w-full">
+        <span class="text-md font-semibold">{{ $t('login.userInfo') }}</span>
+
+        <div class="flex flex-col space-y-1 text-gray-500 w-full">
+          <label for="firstname">{{ $t('login.firstname') }}</label>
+          <input
+            id="firstname"
+            v-model="admin.firstname"
+            type="text"
+            class="input"
+          />
+        </div>
+
+        <div class="flex flex-col space-y-1 text-gray-500 w-full">
+          <label for="lastname">{{ $t('login.lastname') }}</label>
+          <input
+            id="lastname"
+            v-model="admin.lastname"
+            type="text"
+            class="input"
+          />
+        </div>
+
+        <div class="flex flex-col space-y-1 text-gray-500 w-full">
+          <label for="emailUser">{{ $t('login.email') }}</label>
+          <input
+            id="emailUser"
+            v-model="admin.email"
+            type="email"
+            class="input"
+          />
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
@@ -48,7 +121,7 @@
             <input
               id="password"
               ref="password"
-              v-model="password"
+              v-model="admin.password"
               type="password"
               class="w-full"
               :placeholder="$t('login.passwordPlaceholder')"
@@ -91,63 +164,38 @@
         </div>
 
         <span
-          v-if="!passwordEquals && password.length >= 8"
+          v-if="!passwordEquals && admin.password.length >= 8"
           class="text-sm text-red-600"
         >
           {{ $t('login.differentPasswords') }}
         </span>
       </div>
 
-      <div v-else class="flex flex-col items-center space-y-4 w-full">
-        <span class="text-xl font-bold">{{ $t('login.bankingInfos') }}</span>
-
-        <div class="flex flex-col space-y-1 text-gray-500 w-full">
-          <label for="cardHolder">{{ $t('login.cardHolder') }}</label>
-          <input
-            id="cardHolder"
-            v-model="cardHolder"
-            type="text"
-            class="input"
-          />
-        </div>
-
-        <div class="flex flex-col space-y-1 text-gray-500 w-full">
-          <label for="cardNumber">{{ $t('login.cardNumber') }}</label>
-          <input
-            id="cardNumber"
-            v-model="cardNumber"
-            type="text"
-            class="input"
-          />
-        </div>
-
-        <div class="flex justify-between w-full">
-          <div class="flex flex-col space-y-1 text-gray-500 w-2/5">
-            <label for="expDate">{{ $t('login.expDate') }}</label>
-            <input id="expDate" v-model="expDate" type="month" class="input" />
-          </div>
-
-          <div class="flex flex-col space-y-1 text-gray-500 w-2/5">
-            <label for="cvc">{{ $t('login.cvc') }}</label>
-            <input id="cvc" v-model="cvc" type="number" class="input" />
-          </div>
-        </div>
+      <button
+        v-if="page === 'company'"
+        class="btn-secondary w-full"
+        :disabled="!canContinue"
+        @click="page = 'user'"
+      >
+        <fa-icon :icon="['fas', 'arrow-right']" />
+        <span>{{ $t('general.continue') }}</span>
+      </button>
+      <div v-else class="flex space-x-4 w-full" @click="page = 'company'">
+        <button class="btn bg-gray-400 w-full">
+          <fa-icon :icon="['fas', 'arrow-left']" />
+          <span>{{ $t('login.back') }}</span>
+        </button>
+        <button
+          class="btn-secondary w-full"
+          :disabled="!canRegister"
+          @click="register"
+        >
+          <fa-icon :icon="['fas', 'sign-in-alt']" />
+          <span>{{ $t('login.register') }}</span>
+        </button>
       </div>
 
-      <button
-        v-if="!showBankingInfos"
-        class="btn-secondary w-full"
-        :disabled="!passwordEquals || password.length < 8"
-        @click="showBankingInfos = true"
-      >
-        {{ $t('general.continue') }}
-      </button>
-      <button v-else class="btn-secondary w-full" @click="register">
-        <fa-icon :icon="['fas', 'sign-in-alt']" />
-        <span>{{ $t('login.register') }}</span>
-      </button>
-
-      <div v-if="!showBankingInfos" class="flex items-center space-x-1">
+      <div v-if="page === 'company'" class="flex items-center space-x-1">
         <span class="text-sm text-gray-500">{{ $t('login.account') }}</span>
         <span
           class="text-sm font-semibold cursor-pointer text-secondary"
@@ -164,42 +212,69 @@
 export default {
   data() {
     return {
-      email: '',
-      password: '',
+      page: 'company',
       passwordConfirm: '',
-      companyName: '',
-      phone: '',
-      address: '',
-      zipcode: '',
-      city: '',
-      cardHolder: '',
-      cardNumber: '',
-      expDate: '',
-      cvc: '',
-      showBankingInfos: false,
+      company: {
+        name: '',
+        phone: '',
+        email: '',
+        addressLabel: '',
+        street: '',
+        streetNumber: '',
+        postalCode: '',
+        city: '',
+        country: '',
+      },
+      admin: {
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+      },
     }
   },
   computed: {
     passwordEquals(): boolean {
-      return this.password === this.passwordConfirm
+      return this.admin.password === this.passwordConfirm
+    },
+    canContinue(): boolean {
+      return (
+        this.company.name.trim().length > 0 &&
+        this.company.phone.trim().length > 0 &&
+        this.company.email.trim().length > 0 &&
+        this.company.street.trim().length > 0 &&
+        this.company.streetNumber.trim().length > 0 &&
+        this.company.postalCode.trim().length > 0 &&
+        this.company.city.trim().length > 0 &&
+        this.company.country.trim().length > 0
+      )
+    },
+    canRegister(): boolean {
+      return (
+        this.admin.firstname.trim().length > 0 &&
+        this.admin.lastname.trim().length > 0 &&
+        this.admin.email.trim().length > 0 &&
+        this.admin.password.trim().length > 0 &&
+        this.passwordEquals &&
+        this.canContinue
+      )
+    },
+  },
+  watch: {
+    'company.street'() {
+      this.company.addressLabel = `${this.company.street} ${this.company.streetNumber}`
+    },
+    'company.streetNumber'() {
+      this.company.addressLabel = `${this.company.street} ${this.company.streetNumber}`
     },
   },
   methods: {
     async register() {
-      await $fetch('http://localhost:3100/api/v1/admins/register', {
+      await $fetch('http://localhost:3100/api/v1/companies/create', {
         method: 'POST',
         body: {
-          companyName: this.companyName,
-          email: this.email,
-          phone: this.phone,
-          address: this.address,
-          zipcode: this.zipcode,
-          city: this.city,
-          password: this.password,
-          cardHolder: this.cardHolder,
-          cardNumber: this.cardNumber,
-          expDate: this.expDate,
-          cvc: this.cvc,
+          company: this.company,
+          admin: this.admin,
         },
       })
     },

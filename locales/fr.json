@@ -1,5 +1,12 @@
 {
   "login": {
+    "streetNumber": "Numéro de rue",
+    "street": "Rue",
+    "back": "Précédent",
+    "companyInfo": "Informations de l'entreprise",
+    "userInfo": "Informations de l'administrateur",
+    "firstname": "Prénom",
+    "lastname": "Nom",
     "email": "Email",
     "password": "Mot de passe",
     "forgotPassword": "Mot de passe oublié ?",
@@ -12,6 +19,7 @@
     "address": "Adresse",
     "zipcode": "Code postal",
     "city": "Ville",
+    "country": "Pays",
     "passwordConfirm": "Confirmation du mot de passe",
     "passwordPlaceholder": "Au moins 8 caractères",
     "differentPasswords": "Les mots de passe ne correspondent pas",

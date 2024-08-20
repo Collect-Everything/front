@@ -27,6 +27,13 @@
     }
   },
   "login": {
+    "streetNumber": "Street number",
+    "street": "Street",
+    "back": "Previous",
+    "companyInfo": "Company informations",
+    "userInfo": "Admin informations",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
     "account": "I already have an account !",
     "address": "Address",
     "bankingInfos": "Banking information",
@@ -37,6 +44,7 @@
     "cvc": "HVAC",
     "differentPasswords": "Passwords do not match",
     "email": "E-mail",
+    "country": "Country",
     "expDate": "Expiration date",
     "forgotPassword": "Forgot your password ?",
     "login": "Log in",
