@@ -40,9 +40,9 @@
 
         <div class="flex space-x-4 w-full">
           <div class="flex flex-col space-y-1 text-gray-500">
-            <label for="address">{{ $t('login.streetNumber') }}</label>
+            <label for="streetNumber">{{ $t('login.streetNumber') }}</label>
             <input
-              id="address"
+              id="streetNumber"
               v-model="company.streetNumber"
               type="text"
               class="input"
@@ -50,9 +50,9 @@
           </div>
 
           <div class="flex flex-col space-y-1 text-gray-500 w-11/12">
-            <label for="address">{{ $t('login.street') }}</label>
+            <label for="street">{{ $t('login.street') }}</label>
             <input
-              id="address"
+              id="street"
               v-model="company.street"
               type="text"
               class="input"
@@ -129,19 +129,14 @@
             <input
               id="password"
               v-model="admin.password"
-              type="password"
+              :type="showPassword ? 'text' : 'password'"
               class="w-full"
               :placeholder="$t('login.passwordPlaceholder')"
               :minlength="8"
             />
             <fa-icon
-              :icon="['fas', 'eye']"
-              @click="
-                ;($refs.password as HTMLInputElement).type =
-                  ($refs.password as HTMLInputElement).type === 'password'
-                    ? 'text'
-                    : 'password'
-              "
+              :icon="showPassword ? ['fas', 'eye-slash'] : ['fas', 'eye']"
+              @click="togglePasswordVisibility"
             />
           </div>
         </div>
@@ -152,19 +147,15 @@
             <input
               id="passwordConfirm"
               v-model="passwordConfirm"
-              type="password"
+              :type="showPasswordConfirm ? 'text' : 'password'"
               class="w-full"
               :minlength="8"
             />
             <fa-icon
-              :icon="['fas', 'eye']"
-              @click="
-                ;($refs.passwordConfirm as HTMLInputElement).type =
-                  ($refs.passwordConfirm as HTMLInputElement).type ===
-                  'password'
-                    ? 'text'
-                    : 'password'
+              :icon="
+                showPasswordConfirm ? ['fas', 'eye-slash'] : ['fas', 'eye']
               "
+              @click="togglePasswordConfirmVisibility"
             />
           </div>
         </div>
@@ -218,8 +209,10 @@
 import { ref, reactive, computed, watch } from 'vue'
 
 const page = ref('company')
-const passwordConfirm = ref('') // Initialize with an empty string
+const passwordConfirm = ref('')
 const showInvalidEmail = ref(false)
+const showPassword = ref(false)
+const showPasswordConfirm = ref(false)
 
 const config = useRuntimeConfig()
 
@@ -320,6 +313,14 @@ watch(
         !admin.email.includes('@') || !admin.email.includes('.')
   }
 )
+
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value
+}
+
+const togglePasswordConfirmVisibility = () => {
+  showPasswordConfirm.value = !showPasswordConfirm.value
+}
 
 const register = async () => {
   await $fetch(`${config.public.API_GATEWAY_URL}/companies/create`, {
