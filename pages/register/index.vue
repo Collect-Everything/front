@@ -128,7 +128,6 @@
           <div class="input flex items-center justify-between h-10">
             <input
               id="password"
-              ref="password"
               v-model="admin.password"
               type="password"
               class="w-full"
@@ -152,7 +151,6 @@
           <div class="input flex items-center justify-between h-10">
             <input
               id="passwordConfirm"
-              ref="passwordConfirm"
               v-model="passwordConfirm"
               type="password"
               class="w-full"
@@ -216,105 +214,120 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      page: 'company',
-      passwordConfirm: '',
-      company: {
-        name: '',
-        phone: '',
-        email: '',
-        addressLabel: '',
-        street: '',
-        streetNumber: '',
-        postalCode: '',
-        city: '',
-        country: '',
-      },
-      admin: {
-        firstname: '',
-        lastname: '',
-        email: '',
-        password: '',
-      },
-      showInvalidEmail: false,
-    }
-  },
-  computed: {
-    passwordEquals(): boolean {
-      return this.admin.password === this.passwordConfirm
-    },
-    canContinue(): boolean {
-      return (
-        this.company.name.trim().length > 0 &&
-        this.company.phone.trim().length > 0 &&
-        this.company.email.trim().length > 0 &&
-        this.company.email.includes('@') &&
-        this.company.email.includes('.') &&
-        this.company.street.trim().length > 0 &&
-        this.company.streetNumber.trim().length > 0 &&
-        this.company.postalCode.trim().length > 0 &&
-        this.company.city.trim().length > 0 &&
-        this.company.country.trim().length > 0
-      )
-    },
-    canRegister(): boolean {
-      return (
-        this.admin.firstname.trim().length > 0 &&
-        this.admin.lastname.trim().length > 0 &&
-        this.admin.email.trim().length > 0 &&
-        this.admin.email.includes('@') &&
-        this.admin.email.includes('.') &&
-        this.admin.password.trim().length > 0 &&
-        this.passwordEquals &&
-        this.canContinue
-      )
-    },
-  },
-  watch: {
-    'company.street'() {
-      this.company.addressLabel = `${this.company.streetNumber} ${this.company.street}`
-    },
-    'company.streetNumber'() {
-      this.company.addressLabel = `${this.company.streetNumber} ${this.company.street}`
-    },
-    'company.email'() {
-      if (!this.company.email.length) this.showInvalidEmail = false
+<script setup lang="ts">
+import { ref, reactive, computed, watch } from 'vue'
+
+const page = ref('company')
+const passwordConfirm = ref('') // Initialize with an empty string
+const showInvalidEmail = ref(false)
+
+const config = useRuntimeConfig()
+
+const company = reactive({
+  name: '',
+  phone: '',
+  email: '',
+  addressLabel: '',
+  street: '',
+  streetNumber: '',
+  postalCode: '',
+  city: '',
+  country: '',
+})
+
+const admin = reactive({
+  firstname: '',
+  lastname: '',
+  email: '',
+  password: '',
+})
+
+const passwordEquals = computed(() => admin.password === passwordConfirm.value)
+
+const canContinue = computed(() => {
+  return (
+    company.name.trim().length > 0 &&
+    company.phone.trim().length > 0 &&
+    company.email.trim().length > 0 &&
+    company.email.includes('@') &&
+    company.email.includes('.') &&
+    company.street.trim().length > 0 &&
+    company.streetNumber.trim().length > 0 &&
+    company.postalCode.trim().length > 0 &&
+    company.city.trim().length > 0 &&
+    company.country.trim().length > 0
+  )
+})
+
+const canRegister = computed(() => {
+  return (
+    admin.firstname.trim().length > 0 &&
+    admin.lastname.trim().length > 0 &&
+    admin.email.trim().length > 0 &&
+    admin.email.includes('@') &&
+    admin.email.includes('.') &&
+    admin.password.trim().length > 0 &&
+    passwordEquals.value &&
+    canContinue.value
+  )
+})
+
+watch(
+  () => company.street,
+  () => {
+    company.addressLabel = `${company.streetNumber} ${company.street}`
+  }
+)
+
+watch(
+  () => company.streetNumber,
+  () => {
+    company.addressLabel = `${company.streetNumber} ${company.street}`
+  }
+)
+
+watch(
+  () => company.email,
+  () => {
+    if (!company.email.length) showInvalidEmail.value = false
+    else
+      showInvalidEmail.value =
+        !company.email.includes('@') || !company.email.includes('.')
+  }
+)
+
+watch(
+  () => admin.email,
+  () => {
+    if (!admin.email.length) showInvalidEmail.value = false
+    else
+      showInvalidEmail.value =
+        !admin.email.includes('@') || !admin.email.includes('.')
+  }
+)
+
+watch(
+  () => page.value,
+  () => {
+    if (page.value === 'company')
+      if (!company.email.length) showInvalidEmail.value = false
       else
-        this.showInvalidEmail =
-          !this.company.email.includes('@') || !this.company.email.includes('.')
+        showInvalidEmail.value =
+          !company.email.includes('@') || !company.email.includes('.')
+    else if (!admin.email.length) showInvalidEmail.value = false
+    else
+      showInvalidEmail.value =
+        !admin.email.includes('@') || !admin.email.includes('.')
+  }
+)
+
+const register = async () => {
+  await $fetch(`${config.public.API_GATEWAY_URL}/companies/create`, {
+    method: 'POST',
+    body: {
+      company,
+      admin,
     },
-    'admin.email'() {
-      if (!this.admin.email.length) this.showInvalidEmail = false
-      else
-        this.showInvalidEmail =
-          !this.admin.email.includes('@') || !this.admin.email.includes('.')
-    },
-    page() {
-      if (this.page === 'company')
-        if (!this.company.email.length) this.showInvalidEmail = false
-        else
-          this.showInvalidEmail =
-            !this.company.email.includes('@') ||
-            !this.company.email.includes('.')
-      else if (!this.admin.email.length) this.showInvalidEmail = false
-      else
-        this.showInvalidEmail =
-          !this.admin.email.includes('@') || !this.admin.email.includes('.')
-    },
-  },
-  methods: {
-    async register() {
-      await $fetch('http://localhost:3101/api/v1/companies/create', {
-        method: 'POST',
-        body: {
-          company: this.company,
-          admin: this.admin,
-        },
-      })
-    },
-  },
+  })
 }
 </script>
