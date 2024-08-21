@@ -35,17 +35,11 @@
     "firstname": "Firstname",
     "lastname": "Lastname",
     "account": "I already have an account !",
-    "address": "Address",
-    "bankingInfos": "Banking information",
-    "cardHolder": "Card holder",
-    "cardNumber": "Card number",
     "city": "City",
     "companyName": "Company Name",
-    "cvc": "HVAC",
     "differentPasswords": "Passwords do not match",
     "email": "E-mail",
     "country": "Country",
-    "expDate": "Expiration date",
     "forgotPassword": "Forgot your password ?",
     "login": "Log in",
     "noAccount": "No account yet?",
@@ -122,7 +116,8 @@
     "changeSubscription": "Change subscription plan",
     "seeShop": "View the store",
     "subscriptionWarning": "Your trial period ends in {nbDays} days, after this period your store will be deactivated if you do not upgrade to the higher subscription plan.",
-    "title": "My store"
+    "title": "My store",
+    "visual-identity": "Visual identity"
   },
   "about": {
     "about-us": "Who are we ?",
