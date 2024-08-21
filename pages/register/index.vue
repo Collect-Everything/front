@@ -275,10 +275,10 @@ export default {
   },
   watch: {
     'company.street'() {
-      this.company.addressLabel = `${this.company.street} ${this.company.streetNumber}`
+      this.company.addressLabel = `${this.company.streetNumber} ${this.company.street}`
     },
     'company.streetNumber'() {
-      this.company.addressLabel = `${this.company.street} ${this.company.streetNumber}`
+      this.company.addressLabel = `${this.company.streetNumber} ${this.company.street}`
     },
     'company.email'() {
       if (!this.company.email.length) this.showInvalidEmail = false
