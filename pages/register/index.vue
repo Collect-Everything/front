@@ -211,14 +211,17 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed, watch } from 'vue'
+import { useMainStore } from '~/store'
+
+const config = useRuntimeConfig()
+const router = useRouter()
+const { setUser } = useMainStore()
 
 const page = ref('company')
 const passwordConfirm = ref('')
 const showInvalidEmail = ref(false)
 const showPassword = ref(false)
 const showPasswordConfirm = ref(false)
-
-const config = useRuntimeConfig()
 
 const company = reactive({
   name: '',
@@ -339,6 +342,29 @@ const register = async () => {
     })
 
     errorMessage.value = ''
+
+    // login the user
+    const { data } = await $fetch(
+      `${config.public.API_GATEWAY_URL}/auth/login`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: {
+          email: admin.email,
+          password: admin.password,
+        },
+      }
+    )
+
+    const user = {
+      email: admin.email,
+      accessToken: data.accessToken,
+      refreshToken: data.refreshToken,
+    }
+
+    setUser(user)
+
+    router.push('/shopconfig/new')
   } catch (error) {
     if (
       error?.response?._data?.message ===

@@ -40,6 +40,8 @@
 
     <div class="border-b w-full border-gray-300" />
 
+    <span v-if="errorMessage" class="text-red-500">{{ $t(errorMessage) }}</span>
+
     <div class="flex items-center space-x-1">
       <span class="text-sm text-gray-500">{{ $t('login.noAccount') }}</span>
       <span
@@ -52,33 +54,47 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      email: '',
-      password: '',
-      passwordConfirm: '',
-      companyName: '',
-      phone: '',
-      address: '',
-      zipcode: '',
-      city: '',
-      cardHolder: '',
-      cardNumber: '',
-      expDate: '',
-      cvc: '',
-    }
-  },
-  methods: {
-    login() {
-      this.$auth.login(this.email, this.password)
+<script setup lang="ts">
+import { useMainStore } from '~/store'
 
-      this.$router.push('/')
-    },
-    oauthLogin() {
-      // TODO
-    },
-  },
+const config = useRuntimeConfig()
+const { setUser } = useMainStore()
+const router = useRouter()
+
+const email = ref('')
+const password = ref('')
+const errorMessage = ref('')
+
+async function login() {
+  try {
+    const { data } = await $fetch(
+      `${config.public.API_GATEWAY_URL}/auth/login`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: {
+          email: email.value,
+          password: password.value,
+        },
+      }
+    )
+
+    errorMessage.value = ''
+
+    const user = {
+      email: email.value,
+      accessToken: data.accessToken,
+      refreshToken: data.refreshToken,
+    }
+
+    setUser(user)
+
+    router.push('/')
+  } catch (error) {
+    errorMessage.value = 'login.error'
+  }
+}
+function oauthLogin() {
+  // TODO
 }
 </script>
