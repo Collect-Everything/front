@@ -40,9 +40,9 @@
 
         <div class="flex space-x-4 w-full">
           <div class="flex flex-col space-y-1 text-gray-500">
-            <label for="streetNumber">{{ $t('login.streetNumber') }}</label>
+            <label for="number">{{ $t('login.streetNumber') }}</label>
             <input
-              id="streetNumber"
+              id="number"
               v-model="company.streetNumber"
               type="text"
               class="input"
@@ -192,6 +192,10 @@
         </button>
       </div>
 
+      <span v-if="errorMessage" class="text-sm text-red-600">
+        {{ $t(errorMessage) }}
+      </span>
+
       <div v-if="page === 'company'" class="flex items-center space-x-1">
         <span class="text-sm text-gray-500">{{ $t('login.account') }}</span>
         <span
@@ -234,6 +238,8 @@ const admin = reactive({
   email: '',
   password: '',
 })
+
+const errorMessage = ref('')
 
 const passwordEquals = computed(() => admin.password === passwordConfirm.value)
 
@@ -323,12 +329,27 @@ const togglePasswordConfirmVisibility = () => {
 }
 
 const register = async () => {
-  await $fetch(`${config.public.API_GATEWAY_URL}/companies/create`, {
-    method: 'POST',
-    body: {
-      company,
-      admin,
-    },
-  })
+  try {
+    await $fetch(`${config.public.API_GATEWAY_URL}/companies/create`, {
+      method: 'POST',
+      body: {
+        company,
+        admin,
+      },
+    })
+
+    errorMessage.value = ''
+  } catch (error) {
+    if (
+      error?.response?._data?.message ===
+      'Company with that email already exists'
+    ) {
+      errorMessage.value = 'login.companyExists'
+    } else if (error?.response?._data?.message === 'Email already taken') {
+      errorMessage.value = 'login.emailExists'
+    } else {
+      errorMessage.value = 'login.error'
+    }
+  }
 }
 </script>

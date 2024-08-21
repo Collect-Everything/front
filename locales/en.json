@@ -51,7 +51,10 @@
     "register": "Register",
     "zipcode": "Postal code",
     "resetPassword": "Reset my password",
-    "invalidEmail": "Invalid email"
+    "invalidEmail": "Invalid email",
+    "companyExists": "A company already exists with this email address",
+    "emailExists": "A company administrator user already exists with this email address",
+    "error": "An error has occurred"
   },
   "shop": {
     "config": {

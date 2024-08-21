@@ -24,7 +24,10 @@
     "differentPasswords": "Les mots de passe ne correspondent pas",
     "account": "J'ai déjà un compte !",
     "resetPassword": "Réinitialiser mon mot de passe",
-    "invalidEmail": "Email invalide"
+    "invalidEmail": "Email invalide",
+    "companyExists": "Une entreprise existe déjà avec cette adresse email",
+    "emailExists": "Un utilisateur administrateur d'entreprise existe déjà avec cette adresse email",
+    "error": "Une erreur est survenue"
   },
   "general": {
     "or": "Ou",
