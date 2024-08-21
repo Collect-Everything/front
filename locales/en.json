@@ -56,7 +56,8 @@
     "phone": "Phone",
     "register": "Register",
     "zipcode": "Postal code",
-    "resetPassword": "Reset my password"
+    "resetPassword": "Reset my password",
+    "invalidEmail": "Invalid email"
   },
   "shop": {
     "config": {

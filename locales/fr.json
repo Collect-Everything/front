@@ -29,7 +29,8 @@
     "cvc": "CVC",
     "bankingInfos": "Informations bancaires",
     "cardNumber": "Numéro de carte",
-    "resetPassword": "Réinitialiser mon mot de passe"
+    "resetPassword": "Réinitialiser mon mot de passe",
+    "invalidEmail": "Email invalide"
   },
   "general": {
     "or": "Ou",

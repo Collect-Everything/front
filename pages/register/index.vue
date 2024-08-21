@@ -29,6 +29,10 @@
           />
         </div>
 
+        <span v-if="showInvalidEmail" class="text-sm text-red-600">
+          {{ $t('login.invalidEmail') }}
+        </span>
+
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="phone">{{ $t('login.phone') }}</label>
           <input id="phone" v-model="company.phone" type="text" class="input" />
@@ -115,6 +119,10 @@
           />
         </div>
 
+        <span v-if="showInvalidEmail" class="text-sm text-red-600">
+          {{ $t('login.invalidEmail') }}
+        </span>
+
         <div class="flex flex-col space-y-1 text-gray-500 w-full">
           <label for="password">{{ $t('login.password') }}</label>
           <div class="input flex items-center justify-between h-10">
@@ -181,7 +189,7 @@
         <span>{{ $t('general.continue') }}</span>
       </button>
       <div v-else class="flex space-x-4 w-full" @click="page = 'company'">
-        <button class="btn bg-gray-400 w-full">
+        <button class="btn bg-gray-500 w-full">
           <fa-icon :icon="['fas', 'arrow-left']" />
           <span>{{ $t('login.back') }}</span>
         </button>
@@ -231,6 +239,7 @@ export default {
         email: '',
         password: '',
       },
+      showInvalidEmail: false,
     }
   },
   computed: {
@@ -242,6 +251,8 @@ export default {
         this.company.name.trim().length > 0 &&
         this.company.phone.trim().length > 0 &&
         this.company.email.trim().length > 0 &&
+        this.company.email.includes('@') &&
+        this.company.email.includes('.') &&
         this.company.street.trim().length > 0 &&
         this.company.streetNumber.trim().length > 0 &&
         this.company.postalCode.trim().length > 0 &&
@@ -254,6 +265,8 @@ export default {
         this.admin.firstname.trim().length > 0 &&
         this.admin.lastname.trim().length > 0 &&
         this.admin.email.trim().length > 0 &&
+        this.admin.email.includes('@') &&
+        this.admin.email.includes('.') &&
         this.admin.password.trim().length > 0 &&
         this.passwordEquals &&
         this.canContinue
@@ -267,10 +280,34 @@ export default {
     'company.streetNumber'() {
       this.company.addressLabel = `${this.company.street} ${this.company.streetNumber}`
     },
+    'company.email'() {
+      if (!this.company.email.length) this.showInvalidEmail = false
+      else
+        this.showInvalidEmail =
+          !this.company.email.includes('@') || !this.company.email.includes('.')
+    },
+    'admin.email'() {
+      if (!this.admin.email.length) this.showInvalidEmail = false
+      else
+        this.showInvalidEmail =
+          !this.admin.email.includes('@') || !this.admin.email.includes('.')
+    },
+    page() {
+      if (this.page === 'company')
+        if (!this.company.email.length) this.showInvalidEmail = false
+        else
+          this.showInvalidEmail =
+            !this.company.email.includes('@') ||
+            !this.company.email.includes('.')
+      else if (!this.admin.email.length) this.showInvalidEmail = false
+      else
+        this.showInvalidEmail =
+          !this.admin.email.includes('@') || !this.admin.email.includes('.')
+    },
   },
   methods: {
     async register() {
-      await $fetch('http://localhost:3100/api/v1/companies/create', {
+      await $fetch('http://localhost:3101/api/v1/companies/create', {
         method: 'POST',
         body: {
           company: this.company,
