@@ -40,6 +40,14 @@
           <NuxtLink to="/about" class="text-neutral-500">
             <span>{{ $t('general.about') }}</span>
           </NuxtLink>
+
+          <NuxtLink
+            v-if="isAuthenticated"
+            to="/shopconfig"
+            class="text-neutral-500"
+          >
+            <span>{{ $t('general.shopconfig') }}</span>
+          </NuxtLink>
         </div>
 
         <div class="w-1/2 flex items-center justify-end space-x-6">
@@ -83,6 +91,7 @@ export default {
     return {
       showNav: false,
       screenWidth: 0,
+      isAuthenticated: false,
     }
   },
   mounted() {
@@ -91,6 +100,8 @@ export default {
     window.addEventListener('resize', () => {
       this.screenWidth = window.innerWidth
     })
+
+    this.isAuthenticated = !!localStorage.getItem('user')
   },
 }
 </script>

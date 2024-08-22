@@ -35,7 +35,8 @@
     "continue": "Continuer",
     "back": "Retour",
     "about": "À propos",
-    "save": "Enregistrer"
+    "save": "Enregistrer",
+    "shopconfig": "Configuration boutique"
   },
   "invitations": {
     "title": "Vérifiez votre boîte mail",

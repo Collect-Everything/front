@@ -5,7 +5,8 @@
     "home": "Welcome",
     "or": "Or",
     "about": "About",
-    "save": "Save"
+    "save": "Save",
+    "shopconfig": "Store configuration"
   },
   "invitations": {
     "configShop": "Configure my store",

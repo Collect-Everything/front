@@ -14,7 +14,7 @@
       {{ $t('invitations.validated.text2') }}
     </span>
 
-    <button class="btn-secondary" @click="$router.push('/shopconfig/new')">
+    <button class="btn-secondary" @click="$router.push('/shopconfig')">
       <fa-icon :icon="['fas', 'cog']" />
       <span>{{ $t('invitations.configShop') }}</span>
     </button>

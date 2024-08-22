@@ -360,11 +360,12 @@ const register = async () => {
       email: admin.email,
       accessToken: data.accessToken,
       refreshToken: data.refreshToken,
+      companyId: data.companyId,
     }
 
     setUser(user)
 
-    router.push('/shopconfig/new')
+    router.push('/shopconfig')
   } catch (error) {
     if (
       error?.response?._data?.message ===
