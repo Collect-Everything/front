@@ -119,7 +119,7 @@ export default {
       isAuthenticated: false,
     }
   },
-  mounted() {
+  async mounted() {
     this.screenWidth = window.innerWidth
 
     window.addEventListener('resize', () => {

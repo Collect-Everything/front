@@ -71,21 +71,26 @@ async function saveGlobalInfos(value: string) {
 }
 
 async function saveTexts(value: string) {
+  const formData = new FormData()
+
+  formData.append('image', backgroundImage.value)
+  formData.append(
+    'body',
+    JSON.stringify({
+      title: title.value,
+      description: description.value,
+      button: buttonText.value,
+      advantages: advantages.value,
+    })
+  )
   await $fetch(
     `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}/configure-store`,
     {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${getUser?.accessToken}`,
       },
-      body: {
-        title: title.value,
-        description: description.value,
-        buttonText: buttonText.value,
-        advantages: advantages.value,
-        backgroundImage: backgroundImage.value,
-      },
+      body: formData,
     }
   )
 
