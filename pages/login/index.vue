@@ -82,7 +82,7 @@ async function login() {
     errorMessage.value = ''
 
     const user = {
-      email: email.value,
+      payload: data.payload,
       accessToken: data.accessToken,
       refreshToken: data.refreshToken,
     }

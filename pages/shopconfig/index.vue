@@ -48,31 +48,22 @@ const advantages = ref(
 )
 const backgroundImage = ref({} as File)
 
-function toBase64(file: File) {
-  return new Promise<string>((resolve, reject) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = () => resolve(reader.result as string)
-    reader.onerror = (error) => reject(error)
-  })
-}
-
 async function saveGlobalInfos(value: string) {
-  const base64Logo = await toBase64(logo.value)
+  const formData = new FormData()
 
+  formData.append('logo', logo.value)
+  formData.append(
+    'body',
+    JSON.stringify({ storeName: shopName.value, color: color.value })
+  )
   await $fetch(
-    `${config.public.API_GATEWAY_URL}/companies/${getUser.companyId}/configure-store`,
+    `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}/configure-store`,
     {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${getUser.accessToken}`,
+        Authorization: `Bearer ${getUser?.accessToken}`,
       },
-      body: {
-        storeName: shopName.value,
-        color: color.value,
-        logo: base64Logo,
-      },
+      body: formData,
     }
   )
 
@@ -81,12 +72,12 @@ async function saveGlobalInfos(value: string) {
 
 async function saveTexts(value: string) {
   await $fetch(
-    `${config.public.API_GATEWAY_URL}/companies/${getUser.companyId}/configure-store`,
+    `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}/configure-store`,
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${getUser.accessToken}`,
+        Authorization: `Bearer ${getUser?.accessToken}`,
       },
       body: {
         title: title.value,

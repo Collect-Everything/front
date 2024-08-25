@@ -357,10 +357,9 @@ const register = async () => {
     )
 
     const user = {
-      email: admin.email,
+      payload: data.payload,
       accessToken: data.accessToken,
       refreshToken: data.refreshToken,
-      companyId: data.companyId,
     }
 
     setUser(user)

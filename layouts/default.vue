@@ -51,15 +51,28 @@
         </div>
 
         <div class="w-1/2 flex items-center justify-end space-x-6">
-          <button class="btn-secondary" @click="$router.push('/register')">
+          <button
+            class="btn-secondary"
+            @click="$router.push('/register')"
+            v-if="!isAuthenticated"
+          >
             <span>{{ $t('login.register') }}</span>
           </button>
 
           <button
             class="btn-skeleton-secondary"
             @click="$router.push('/login')"
+            v-if="!isAuthenticated"
           >
             <span>{{ $t('login.login') }}</span>
+          </button>
+
+          <button
+            class="btn-skeleton-secondary"
+            @click="logout()"
+            v-if="isAuthenticated"
+          >
+            <span>{{ $t('login.logout') }}</span>
           </button>
 
           <LangDropdown />
@@ -86,9 +99,21 @@
 </template>
 
 <script lang="ts">
+import { useMainStore } from '~/store'
+
+const { logout } = useMainStore()
+
+const router = useRouter()
+
+const handleLogout = () => {
+  logout()
+  router.push('/')
+}
+
 export default {
   data() {
     return {
+      logout: handleLogout,
       showNav: false,
       screenWidth: 0,
       isAuthenticated: false,
