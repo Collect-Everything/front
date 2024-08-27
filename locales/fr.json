@@ -27,7 +27,8 @@
     "invalidEmail": "Email invalide",
     "companyExists": "Une entreprise existe déjà avec cette adresse email",
     "emailExists": "Un utilisateur administrateur d'entreprise existe déjà avec cette adresse email",
-    "error": "Une erreur est survenue"
+    "error": "Une erreur est survenue",
+    "logout": "Se déconnecter"
   },
   "general": {
     "or": "Ou",

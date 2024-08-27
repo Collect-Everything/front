@@ -55,7 +55,8 @@
     "invalidEmail": "Invalid email",
     "companyExists": "A company already exists with this email address",
     "emailExists": "A company administrator user already exists with this email address",
-    "error": "An error has occurred"
+    "error": "An error has occurred",
+    "logout": "Log out"
   },
   "shop": {
     "config": {

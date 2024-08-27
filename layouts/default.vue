@@ -52,26 +52,27 @@
 
         <div class="w-1/2 flex items-center justify-end space-x-6">
           <button
+            v-if="!isAuthenticated"
             class="btn-secondary"
             @click="$router.push('/register')"
-            v-if="!isAuthenticated"
           >
             <span>{{ $t('login.register') }}</span>
           </button>
 
           <button
+            v-if="!isAuthenticated"
             class="btn-skeleton-secondary"
             @click="$router.push('/login')"
-            v-if="!isAuthenticated"
           >
             <span>{{ $t('login.login') }}</span>
           </button>
 
           <button
-            class="btn-skeleton-secondary"
-            @click="logout()"
             v-if="isAuthenticated"
+            class="btn-skeleton-secondary"
+            @click="handleLogout()"
           >
+            <fa-icon :icon="['fas', 'sign-out-alt']" />
             <span>{{ $t('login.logout') }}</span>
           </button>
 
@@ -98,37 +99,27 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useMainStore } from '~/store'
 
 const { logout } = useMainStore()
-
 const router = useRouter()
+
+let isAuthenticated = !!localStorage.getItem('user')
+const showNav = ref(false)
+let screenWidth = ref(0).value
 
 const handleLogout = () => {
   logout()
   router.push('/')
+  isAuthenticated = !!localStorage.getItem('user')
 }
 
-export default {
-  data() {
-    return {
-      logout: handleLogout,
-      showNav: false,
-      screenWidth: 0,
-      isAuthenticated: false,
-    }
-  },
-  async mounted() {
-    this.screenWidth = window.innerWidth
+screenWidth = window.innerWidth
 
-    window.addEventListener('resize', () => {
-      this.screenWidth = window.innerWidth
-    })
-
-    this.isAuthenticated = !!localStorage.getItem('user')
-  },
-}
+window.addEventListener('resize', () => {
+  screenWidth = window.innerWidth
+})
 </script>
 
 <style>
