@@ -17,6 +17,7 @@
           id="shopName"
           type="text"
           class="input"
+          :value="shopName"
           @input="update('shopName', $event)"
         />
       </div>
@@ -48,7 +49,7 @@
         <div class="flex space-x-2">
           <div
             ref="colorDisplay"
-            class="h-14 w-14 rounded-md bg-[#3C7E44]"
+            class="h-14 w-14 rounded-md"
             @click="$refs.colorInput.click()"
           />
           <input
@@ -56,6 +57,7 @@
             ref="colorInput"
             type="color"
             class="opacity-0 w-0 h-0"
+            :value="color"
             @input="setColor($event.target.value)"
           />
           <div class="flex flex-col space-y-1">
@@ -66,8 +68,8 @@
         <span>{{ $t('shop.config.colorsHint') }}</span>
       </div>
 
-      <button class="btn-secondary w-full" @click="$emit('changePage', 'texts')">
-        {{ $t('general.continue') }}
+      <button class="btn-secondary w-full" @click="$emit('save')">
+        {{ $t('general.save') }}
       </button>
     </div>
   </div>
@@ -90,7 +92,12 @@ export default {
       required: true,
     },
   },
-  emits: ['update:shopName', 'update:logo', 'update:color', 'changePage'],
+  emits: ['update:shopName', 'update:logo', 'update:color', 'save'],
+  watch: {
+    color(color: string) {
+      this.$refs.colorDisplay.style.backgroundColor = color
+    },
+  },
   methods: {
     update(field: 'shopName' | 'logo' | 'color', event: Event) {
       if (field === 'logo')

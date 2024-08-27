@@ -47,6 +47,7 @@
           id="title"
           type="text"
           class="input"
+          :value="title"
           @input="update('title', $event)"
         />
       </div>
@@ -58,6 +59,7 @@
         <textarea
           id="description"
           class="border border-gray-500 rounded-md h-20 px-4"
+          :value="description"
           @input="update('description', $event)"
         />
       </div>
@@ -70,6 +72,7 @@
           id="buttonText"
           type="text"
           class="input"
+          :value="buttonText"
           @input="update('buttonText', $event)"
         />
       </div>
@@ -114,7 +117,6 @@
         <div
           class="bg-gray-200 w-full h-40 flex flex-col items-center justify-around relative"
         >
-          <fa-icon v-if="advantage.icon" :icon="['fas', advantage.icon]" />
           <span class="font-semibold">{{ advantage.title }}</span>
           <span>{{ advantage.description }}</span>
 
@@ -127,28 +129,6 @@
         </div>
 
         <div class="flex flex-col space-y-1 text-gray-500">
-          <label :for="`icon-${advantage.index}`">
-            {{ $t('shop.config.homePage.icon') }}
-          </label>
-          <select
-            :id="`icon-${advantage.index}`"
-            class="input"
-            @change="update('advantages', $event, advantage.index, 'icon')"
-          >
-            <option value="">
-              {{ $t('shop.config.homePage.chooseIcon') }}
-            </option>
-            <option
-              v-for="faIcon in fontawesomeIcons"
-              :key="faIcon"
-              :value="faIcon"
-            >
-              {{ faIcon }}
-            </option>
-          </select>
-        </div>
-
-        <div class="flex flex-col space-y-1 text-gray-500">
           <label :for="`title-${advantage.index}`">
             {{ $t('shop.config.homePage.title') }}
           </label>
@@ -156,6 +136,7 @@
             :id="`title-${advantage.index}`"
             type="text"
             class="input"
+            :value="advantage.title"
             @input="update('advantages', $event, advantage.index, 'title')"
           />
         </div>
@@ -168,6 +149,7 @@
             :id="`description-${advantage.index}`"
             type="text"
             class="border border-gray-500 rounded-md h-20 px-4"
+            :value="advantage.description"
             @input="
               update('advantages', $event, advantage.index, 'description')
             "
@@ -185,20 +167,9 @@
         </div>
       </div>
 
-      <div class="flex space-x-4 w-full">
-        <button
-          class="btn-skeleton-secondary w-full"
-          @click="$emit('changePage', 'globalInfos')"
-        >
-          {{ $t('general.back') }}
-        </button>
-        <button
-          class="btn-secondary w-full"
-          @click="$emit('changePage', 'contactInfos')"
-        >
-          {{ $t('general.continue') }}
-        </button>
-      </div>
+      <button class="btn-secondary w-full" @click="$emit('save')">
+        {{ $t('general.save') }}
+      </button>
     </div>
   </div>
 </template>
@@ -221,7 +192,6 @@ export default {
     },
     advantages: {
       type: Array<{
-        icon: string
         title: string
         description: string
         index: number
@@ -240,11 +210,10 @@ export default {
     'update:advantages',
     'update:backgroundImage',
     'addAdvantage',
-    'changePage',
+    'save',
   ],
   data() {
     return {
-      fontawesomeIcons: ['sun', 'bolt'],
       backgroundImageURL: '',
     }
   },

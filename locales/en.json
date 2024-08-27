@@ -6,7 +6,8 @@
     "or": "Or",
     "about": "About",
     "save": "Save",
-    "shopconfig": "Store configuration"
+    "shopconfig": "Store configuration",
+    "edit": "To modify"
   },
   "invitations": {
     "configShop": "Configure my store",
@@ -85,7 +86,13 @@
         "text": "Enter the texts, catchphrases and highlights of your shop here.",
         "title": "Texts from your shop"
       },
-      "title": "Setting up your store"
+      "title": "Setting up your store",
+      "globalInfos": "Global information",
+      "categories": "Category management",
+      "categoryName": "Category name",
+      "categoriesInfos": "Manage your store's product categories here",
+      "addCategory": "Add a category",
+      "noCategories": "No categories available"
     }
   },
   "prices": {

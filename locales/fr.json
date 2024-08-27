@@ -37,7 +37,9 @@
     "back": "Retour",
     "about": "À propos",
     "save": "Enregistrer",
-    "shopconfig": "Configuration boutique"
+    "shopconfig": "Configuration boutique",
+    "edit": "Modifier",
+    "delete": "Supprimer"
   },
   "invitations": {
     "title": "Vérifiez votre boîte mail",
@@ -85,7 +87,24 @@
         "icon": "Icône",
         "addAdvantage": "Ajouter un autre avantage",
         "chooseIcon": "Choisissez une icône"
-      }
+      },
+      "globalInfos": "Informations globales",
+      "categories": "Gestion des catégories",
+      "categoryName": "Nom de la catégorie",
+      "categoriesInfos": "Gérez ici les catégories de produits de votre boutique",
+      "addCategory": "Ajouter une catégorie",
+      "noCategories": "Aucune catégorie disponible",
+      "productsInfos": "Gérez ici les produits de votre boutique",
+      "addProduct": "Ajouter un produit",
+      "productName": "Nom du produit",
+      "products": "Gestion des produits",
+      "noProducts": "Aucun produit disponible",
+      "productCategory": "Catégorie du produit",
+      "productPrice": "Prix du produit",
+      "productDescription": "Description du produit",
+      "productStock": "Quantité en stock du produit",
+      "productConditioning": "Conditionnement du produit",
+      "productUnity": "Unité de mesure du produit"
     }
   },
   "prices": {
