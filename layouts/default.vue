@@ -105,14 +105,14 @@ import { useMainStore } from '~/store'
 const { logout } = useMainStore()
 const router = useRouter()
 
-let isAuthenticated = !!localStorage.getItem('user')
+const isAuthenticated = !!localStorage.getItem('user')
 const showNav = ref(false)
 let screenWidth = ref(0).value
 
 const handleLogout = () => {
   logout()
   router.push('/')
-  isAuthenticated = !!localStorage.getItem('user')
+  window.location.reload()
 }
 
 screenWidth = window.innerWidth

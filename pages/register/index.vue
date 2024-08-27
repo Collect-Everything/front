@@ -364,7 +364,9 @@ const register = async () => {
 
     setUser(user)
 
-    router.push('/shopconfig')
+    router.push('/shopconfig').then(() => {
+      window.location.reload()
+    })
   } catch (error) {
     if (
       error?.response?._data?.message ===

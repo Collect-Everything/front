@@ -89,7 +89,9 @@ async function login() {
 
     setUser(user)
 
-    router.push('/')
+    router.push('/').then(() => {
+      window.location.reload()
+    })
   } catch (error) {
     errorMessage.value = 'login.error'
   }
