@@ -140,20 +140,20 @@
         <div class="flex flex-col space-y-2">
           <div
             v-for="(product, index) in products"
-            :key="product._props.id"
+            :key="product.id"
             class="flex flex-col space-y-2"
           >
             <div class="flex justify-between items-center">
               <input
-                :value="product._props.name"
-                :disabled="!product._props.edit"
+                :value="product.name"
+                :disabled="!product.edit"
                 class="input"
               />
 
               <button
-                v-if="!product._props.edit"
+                v-if="!product.edit"
                 class="btn-secondary"
-                @click="product._props.edit = !product._props.edit"
+                @click="product.edit = !product.edit"
               >
                 {{ $t('general.edit') }}
               </button>
@@ -162,8 +162,8 @@
                 class="btn-secondary"
                 @click="
                   $emit('saveProduct', {
-                    id: product._props.id,
-                    name: product._props.name,
+                    id: product.id,
+                    name: product.name,
                   })
                 "
               >
@@ -173,7 +173,7 @@
                 class="btn-danger"
                 @click="
                   $emit('deleteProduct', {
-                    id: product._props.id,
+                    id: product.id,
                   })
                 "
               >

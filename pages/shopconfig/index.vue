@@ -249,10 +249,10 @@ async function deleteCategory(category: Object) {
 
 async function fetchProducts() {
   const { data } = await $fetch(
-    `${config.public.API_GATEWAY_URL}/products?companyId=${getUser?.payload.companyId}`
+    `${config.public.API_GATEWAY_URL}/products?companyId=${getUser?.payload.companyId}&page=1&limit=200`
   )
 
-  products.value = data.value
+  products.value = data.data
 }
 
 async function createProduct(product: Object) {
