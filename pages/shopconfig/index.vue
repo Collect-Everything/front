@@ -144,6 +144,8 @@ onMounted(() => {
 watch(
   page,
   () => {
+    if (!page.value) page.value = 'globalInfos'
+
     router.push({ query: { tab: page.value } })
   },
   { immediate: true }

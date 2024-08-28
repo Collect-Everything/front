@@ -2,7 +2,7 @@
   <div class="flex justify-center w-full">
     <div class="flex flex-col items-center sm:w-full md:lg:w-1/3 space-y-6">
       <span class="text-xl font-bold">
-        {{ $t('shop.config.title') }}
+        {{ $t('shop.config.products') }}
       </span>
 
       <span class="text-gray-500">
