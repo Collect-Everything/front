@@ -239,7 +239,6 @@ async function createCategory() {
   fetchCategories()
 }
 
-// BACK NOT READY FOR THIS
 async function saveCategory(category: Object) {
   await $fetch(
     `${config.public.API_GATEWAY_URL}/products/categories/${category.id}`,
@@ -257,7 +256,6 @@ async function saveCategory(category: Object) {
   fetchCategories()
 }
 
-// BACK NOT READY FOR THIS
 async function deleteCategory(category: Object) {
   await $fetch(
     `${config.public.API_GATEWAY_URL}/products/categories/${category.id}`,
@@ -308,7 +306,6 @@ async function createProduct() {
   fetchProducts()
 }
 
-// BACK NOT READY FOR THIS
 async function saveProduct(product: Object) {
   await $fetch(`${config.public.API_GATEWAY_URL}/products/${product.id}`, {
     method: 'PATCH',
@@ -323,7 +320,6 @@ async function saveProduct(product: Object) {
   fetchProducts()
 }
 
-// BACK NOT READY FOR THIS
 async function deleteProduct(product: Object) {
   await $fetch(`${config.public.API_GATEWAY_URL}/products/${product.id}`, {
     method: 'DELETE',

@@ -7,7 +7,9 @@
     "about": "About",
     "save": "Save",
     "shopconfig": "Store configuration",
-    "edit": "To modify"
+    "edit": "To modify",
+    "cancel": "Cancel",
+    "delete": "DELETE"
   },
   "invitations": {
     "configShop": "Configure my store",
@@ -92,7 +94,19 @@
       "categoryName": "Category name",
       "categoriesInfos": "Manage your store's product categories here",
       "addCategory": "Add a category",
-      "noCategories": "No categories available"
+      "noCategories": "No categories available",
+      "addProduct": "Add a product",
+      "editProduct": "Edit a product",
+      "noProducts": "No products available",
+      "productCategory": "Product category",
+      "productConditioning": "Product packaging",
+      "productDescription": "Product Description",
+      "productName": "Product Name",
+      "productPrice": "Product price",
+      "productStock": "Quantity in stock of the product",
+      "productUnity": "Product unit of measurement",
+      "products": "Product management",
+      "productsInfos": "Manage your store's products here"
     }
   },
   "prices": {
