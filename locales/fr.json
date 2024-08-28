@@ -39,7 +39,8 @@
     "save": "Enregistrer",
     "shopconfig": "Configuration boutique",
     "edit": "Modifier",
-    "delete": "Supprimer"
+    "delete": "Supprimer",
+    "cancel": "Annuler"
   },
   "invitations": {
     "title": "Vérifiez votre boîte mail",
@@ -104,7 +105,8 @@
       "productDescription": "Description du produit",
       "productStock": "Quantité en stock du produit",
       "productConditioning": "Conditionnement du produit",
-      "productUnity": "Unité de mesure du produit"
+      "productUnity": "Unité de mesure du produit",
+      "editProduct": "Modifier un produit"
     }
   },
   "prices": {

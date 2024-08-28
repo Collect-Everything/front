@@ -24,10 +24,7 @@
         />
       </div>
 
-      <button
-        class="btn-secondary w-full"
-        @click="$emit('create', { name: categoryName })"
-      >
+      <button class="btn-secondary w-full" @click="$emit('create')">
         {{ $t('general.save') }}
       </button>
 
@@ -46,7 +43,7 @@
           >
             <div class="flex justify-between items-center">
               <input
-                :value="category._props.name"
+                v-model="category._props.name"
                 :disabled="!category._props.edit"
                 class="input"
               />
@@ -61,12 +58,7 @@
               <button
                 v-else
                 class="btn-secondary"
-                @click="
-                  $emit('saveCategory', {
-                    id: category._props.id,
-                    name: category._props.name,
-                  })
-                "
+                @click="saveCategory(category)"
               >
                 {{ $t('general.save') }}
               </button>
@@ -114,6 +106,14 @@ export default {
   methods: {
     update(field: 'categoryName', event: Event) {
       this.$emit(`update:${field}`, (event.target as HTMLInputElement).value)
+    },
+    saveCategory(category) {
+      category._props.edit = !category._props.edit
+
+      this.$emit('saveCategory', {
+        id: category._props.id,
+        name: category._props.name,
+      })
     },
   },
 }

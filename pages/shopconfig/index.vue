@@ -69,7 +69,7 @@
       v-else-if="page === 'categories'"
       v-model:categoryName="categoryName"
       :categories="categories"
-      @create="createCategory($event)"
+      @create="createCategory()"
       @save-category="saveCategory($event)"
       @delete-category="deleteCategory($event)"
     />
@@ -84,7 +84,7 @@
       v-model:productUnity="productUnity"
       :products="products"
       :categories="categories"
-      @create="createProduct($event)"
+      @create="createProduct()"
       @save-product="saveProduct($event)"
       @delete-product="deleteProduct($event)"
     />
@@ -96,8 +96,14 @@ import { useMainStore } from '~/store'
 
 const config = useRuntimeConfig()
 const { getUser } = useMainStore()
+const router = useRouter()
 
-const page = ref('globalInfos')
+const route = useRoute()
+
+if (!route.query.tab) router.push({ query: { tab: 'globalInfos' } })
+else router.push({ query: { tab: route.query.tab } })
+
+const page = ref(route.query.tab as string)
 
 // Infos générales
 const shopName = ref('')
@@ -135,6 +141,14 @@ onMounted(() => {
   fetchProducts()
 })
 
+watch(
+  page,
+  () => {
+    router.push({ query: { tab: page.value } })
+  },
+  { immediate: true }
+)
+
 async function fetchCompanyInfos() {
   const { data } = await $fetch(
     `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}`
@@ -161,6 +175,7 @@ async function saveGlobalInfos() {
     'body',
     JSON.stringify({ storeName: shopName.value, color: color.value })
   )
+
   await $fetch(
     `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}/configure-store`,
     {
@@ -186,6 +201,7 @@ async function saveTexts() {
       advantages: advantages.value,
     })
   )
+
   await $fetch(
     `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}/configure-store`,
     {
@@ -206,16 +222,21 @@ async function fetchCategories() {
   categories.value = data.value
 }
 
-async function createCategory(category: Object) {
+async function createCategory() {
   await $fetch(`${config.public.API_GATEWAY_URL}/products/categories`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${getUser?.accessToken}`,
     },
     body: {
-      name: category.name,
+      name: categoryName.value,
+      companyId: getUser?.payload.companyId,
     },
   })
+
+  categoryName.value = ''
+
+  fetchCategories()
 }
 
 // BACK NOT READY FOR THIS
@@ -232,6 +253,8 @@ async function saveCategory(category: Object) {
       },
     }
   )
+
+  fetchCategories()
 }
 
 // BACK NOT READY FOR THIS
@@ -245,6 +268,8 @@ async function deleteCategory(category: Object) {
       },
     }
   )
+
+  fetchCategories()
 }
 
 async function fetchProducts() {
@@ -255,22 +280,32 @@ async function fetchProducts() {
   products.value = data.data
 }
 
-async function createProduct(product: Object) {
+async function createProduct() {
   await $fetch(`${config.public.API_GATEWAY_URL}/products`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${getUser?.accessToken}`,
     },
     body: {
-      name: product.name,
-      categoryId: product.category,
-      price: Number(product.price),
-      description: product.description,
-      stock: Number(product.stock),
-      conditioning: product.conditioning,
-      unity: product.unity,
+      name: productName.value,
+      categoryId: productCategory.value,
+      price: Number(productPrice.value),
+      description: productDescription.value,
+      stock: Number(productStock.value),
+      conditioning: productConditioning.value,
+      unity: productUnity.value,
     },
   })
+
+  productCategory.value = ''
+  productName.value = ''
+  productPrice.value = 0
+  productDescription.value = ''
+  productStock.value = 0
+  productConditioning.value = ''
+  productUnity.value = ''
+
+  fetchProducts()
 }
 
 // BACK NOT READY FOR THIS
@@ -284,6 +319,8 @@ async function saveProduct(product: Object) {
       product,
     },
   })
+
+  fetchProducts()
 }
 
 // BACK NOT READY FOR THIS
@@ -294,5 +331,7 @@ async function deleteProduct(product: Object) {
       Authorization: `Bearer ${getUser?.accessToken}`,
     },
   })
+
+  fetchProducts()
 }
 </script>

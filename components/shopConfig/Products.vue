@@ -113,20 +113,7 @@
         </select>
       </div>
 
-      <button
-        class="btn-secondary w-full"
-        @click="
-          $emit('create', {
-            name: productName,
-            category: productCategory,
-            price: productPrice,
-            description: productDescription,
-            stock: productStock,
-            conditioning: productConditioning,
-            unity: productUnity,
-          })
-        "
-      >
+      <button class="btn-secondary w-full" @click="$emit('create')">
         {{ $t('general.save') }}
       </button>
 
@@ -144,30 +131,10 @@
             class="flex flex-col space-y-2"
           >
             <div class="flex justify-between items-center">
-              <input
-                :value="product.name"
-                :disabled="!product.edit"
-                class="input"
-              />
+              <input :value="product.name" disabled class="input" />
 
-              <button
-                v-if="!product.edit"
-                class="btn-secondary"
-                @click="product.edit = !product.edit"
-              >
+              <button class="btn-secondary" @click="showEdit(product)">
                 {{ $t('general.edit') }}
-              </button>
-              <button
-                v-else
-                class="btn-secondary"
-                @click="
-                  $emit('saveProduct', {
-                    id: product.id,
-                    name: product.name,
-                  })
-                "
-              >
-                {{ $t('general.save') }}
               </button>
               <button
                 class="btn-danger"
@@ -193,6 +160,133 @@
         </div>
       </div>
     </div>
+
+    <Modal v-if="showModalEdit" :class="'w-1/3'" @close="showModalEdit = false">
+      <template #body>
+        <div class="flex flex-col space-y-1 text-gray-500 w-full">
+          <span class="text-black font-semibold">
+            {{ $t('shop.config.editProduct') }}
+          </span>
+          <label for="productName">{{ $t('shop.config.productName') }}</label>
+          <input
+            id="productName"
+            v-model="selectedProduct.name"
+            type="text"
+            class="input"
+            @input="update('productName', $event)"
+          />
+        </div>
+
+        <div class="flex flex-col space-y-1 text-gray-500 w-full">
+          <label for="productCategory">
+            {{ $t('shop.config.productCategory') }}
+          </label>
+          <select
+            id="productCategory"
+            v-model="selectedProduct.category"
+            class="input"
+            @change="update('productCategory', $event)"
+          >
+            <option
+              v-for="category in categories.map((category) => category._props)"
+              :key="category.id"
+              :value="category.id"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="flex flex-col space-y-1 text-gray-500 w-full">
+          <label for="productPrice">{{ $t('shop.config.productPrice') }}</label>
+          <input
+            id="productPrice"
+            v-model="selectedProduct.price"
+            type="number"
+            class="input"
+            min="0"
+            @input="update('productPrice', $event)"
+          />
+        </div>
+
+        <div class="flex flex-col space-y-1 text-gray-500 w-full">
+          <label for="productDescription">
+            {{ $t('shop.config.productDescription') }}
+          </label>
+          <input
+            id="productDescription"
+            v-model="selectedProduct.description"
+            type="text"
+            class="input"
+            @input="update('productDescription', $event)"
+          />
+        </div>
+
+        <div class="flex flex-col space-y-1 text-gray-500 w-full">
+          <label for="productStock">{{ $t('shop.config.productStock') }}</label>
+          <input
+            id="productStock"
+            v-model="selectedProduct.stock"
+            type="number"
+            class="input"
+            min="0"
+            @input="update('productStock', $event)"
+          />
+        </div>
+
+        <div class="flex flex-col space-y-1 text-gray-500 w-full">
+          <label for="productConditioning">
+            {{ $t('shop.config.productConditioning') }}
+          </label>
+          <select
+            id="productConditioning"
+            v-model="selectedProduct.conditioning"
+            class="input"
+            @change="update('productConditioning', $event)"
+          >
+            <option
+              v-for="conditioning in ['unit']"
+              :key="conditioning"
+              :value="conditioning"
+            >
+              {{ conditioning }}
+            </option>
+          </select>
+        </div>
+
+        <div class="flex flex-col space-y-1 text-gray-500 w-full">
+          <label for="productUnity">{{ $t('shop.config.productUnity') }}</label>
+          <select
+            id="productUnity"
+            v-model="selectedProduct.unity"
+            class="input"
+            @change="update('productUnity', $event)"
+          >
+            <option
+              v-for="unity in ['kg', 'g', 'L', 'ml', 'unit']"
+              :key="unity"
+              :value="unity"
+            >
+              {{ unity }}
+            </option>
+          </select>
+        </div>
+      </template>
+
+      <template #footer="{ slotScope }">
+        <div class="flex justify-center mt-5 items-center space-x-5">
+          <button class="btn-danger w-20" @click="slotScope()">
+            {{ $t('general.cancel') }}
+          </button>
+          <button
+            class="btn-secondary"
+            @click="$emit('saveProduct', selectedProduct)"
+          >
+            {{ $t('general.save') }}
+          </button>
+        </div>
+      </template>
+    </Modal>
   </div>
 </template>
 
@@ -249,8 +343,27 @@ export default {
     'saveProduct',
     'deleteProduct',
   ],
+  data() {
+    return {
+      showModalEdit: false,
+      selectedProduct: {
+        name: '',
+        category: '',
+        price: 0,
+        description: '',
+        stock: 0,
+        conditioning: 'unit',
+        unity: 'kg',
+      },
+    }
+  },
+  watch: {
+    categories() {
+      if (this.categories.length > 0)
+        this.$emit('update:productCategory', this.categories[0]._props.id)
+    },
+  },
   mounted() {
-    this.$emit('update:productCategory', this.categories[0]._props.id)
     this.$emit('update:productConditioning', 'unit')
     this.$emit('update:productUnity', 'unit')
   },
@@ -267,6 +380,10 @@ export default {
       event: Event
     ) {
       this.$emit(`update:${field}`, (event.target as HTMLInputElement).value)
+    },
+    showEdit(product: any) {
+      this.selectedProduct = { ...product }
+      this.showModalEdit = true
     },
   },
 }
