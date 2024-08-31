@@ -218,7 +218,13 @@ async function saveTexts() {
 
 async function fetchCategories() {
   const { data } = await $fetch(
-    `${config.public.API_GATEWAY_URL}/products/categories`
+    `${config.public.API_GATEWAY_URL}/products/categories`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${getUser?.accessToken}`,
+      },
+    }
   )
 
   categories.value = data.value
@@ -274,7 +280,13 @@ async function deleteCategory(category: Object) {
 
 async function fetchProducts() {
   const { data } = await $fetch(
-    `${config.public.API_GATEWAY_URL}/products?companyId=${getUser?.payload.companyId}&page=1&limit=200`
+    `${config.public.API_GATEWAY_URL}/products?companyId=${getUser?.payload.companyId}&page=1&limit=200`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${getUser?.accessToken}`,
+      },
+    }
   )
 
   products.value = data.data
