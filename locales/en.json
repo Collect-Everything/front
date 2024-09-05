@@ -106,7 +106,8 @@
       "productStock": "Quantity in stock of the product",
       "productUnity": "Product unit of measurement",
       "products": "Product management",
-      "productsInfos": "Manage your store's products here"
+      "productsInfos": "Manage your store's products here",
+      "productImage": "Product image"
     }
   },
   "prices": {

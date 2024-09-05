@@ -113,6 +113,16 @@
         </select>
       </div>
 
+      <div class="flex flex-col space-y-1 text-gray-500 w-full">
+        <label for="productImage">{{ $t('shop.config.productImage') }}</label>
+        <input
+          id="productImage"
+          type="file"
+          accept="image/*"
+          @input="update('productImage', $event)"
+        />
+      </div>
+
       <button class="btn-secondary w-full" @click="$emit('create')">
         {{ $t('general.save') }}
       </button>
@@ -322,6 +332,10 @@ export default {
       type: String,
       required: true,
     },
+    productImage: {
+      type: Object,
+      required: true,
+    },
     products: {
       type: Array,
       required: true,
@@ -339,6 +353,7 @@ export default {
     'update:productStock',
     'update:productConditioning',
     'update:productUnity',
+    'update:productImage',
     'create',
     'saveProduct',
     'deleteProduct',
@@ -376,10 +391,17 @@ export default {
         | 'productDescription'
         | 'productStock'
         | 'productConditioning'
-        | 'productUnity',
+        | 'productUnity'
+        | 'productImage',
       event: Event
     ) {
-      this.$emit(`update:${field}`, (event.target as HTMLInputElement).value)
+      if (field === 'productImage')
+        this.$emit(
+          `update:${field}`,
+          (event.target as HTMLInputElement).files[0]
+        )
+      else
+        this.$emit(`update:${field}`, (event.target as HTMLInputElement).value)
     },
     showEdit(product: any) {
       this.selectedProduct = { ...product }

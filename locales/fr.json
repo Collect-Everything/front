@@ -106,7 +106,8 @@
       "productStock": "Quantité en stock du produit",
       "productConditioning": "Conditionnement du produit",
       "productUnity": "Unité de mesure du produit",
-      "editProduct": "Modifier un produit"
+      "editProduct": "Modifier un produit",
+      "productImage": "Image du produit"
     }
   },
   "prices": {

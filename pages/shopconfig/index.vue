@@ -82,6 +82,7 @@
       v-model:productStock="productStock"
       v-model:productConditioning="productConditioning"
       v-model:productUnity="productUnity"
+      v-model:productImage="productImage"
       :products="products"
       :categories="categories"
       @create="createProduct()"
@@ -134,6 +135,7 @@ const productDescription = ref('')
 const productStock = ref(0)
 const productConditioning = ref('')
 const productUnity = ref('')
+const productImage = ref({} as File)
 
 onMounted(() => {
   fetchCompanyInfos()
@@ -293,12 +295,12 @@ async function fetchProducts() {
 }
 
 async function createProduct() {
-  await $fetch(`${config.public.API_GATEWAY_URL}/products`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${getUser?.accessToken}`,
-    },
-    body: {
+  const formData = new FormData()
+
+  formData.append('image', productImage.value)
+  formData.append(
+    'body',
+    JSON.stringify({
       name: productName.value,
       categoryId: productCategory.value,
       price: Number(productPrice.value),
@@ -306,7 +308,16 @@ async function createProduct() {
       stock: Number(productStock.value),
       conditioning: productConditioning.value,
       unity: productUnity.value,
+    })
+  )
+
+  await $fetch(`${config.public.API_GATEWAY_URL}/products`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${getUser?.accessToken}`,
+      ContentType: 'multipart/form-data',
     },
+    body: formData,
   })
 
   productCategory.value = ''
@@ -316,6 +327,7 @@ async function createProduct() {
   productStock.value = 0
   productConditioning.value = ''
   productUnity.value = ''
+  productImage.value = {} as File
 
   fetchProducts()
 }
