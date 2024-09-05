@@ -94,6 +94,7 @@
 
 <script setup lang="ts">
 import { useMainStore } from '~/store'
+import * as Sentry from '@sentry/nuxt'
 
 const config = useRuntimeConfig()
 const { getUser } = useMainStore()
@@ -154,206 +155,250 @@ watch(
 )
 
 async function fetchCompanyInfos() {
-  const { data } = await $fetch(
-    `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}`
-  )
+  try {
+    const { data } = await $fetch(
+      `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}`
+    )
 
-  const storeConfiguration = data.result.value.storeConfiguration
+    const storeConfiguration = data.result.value.storeConfiguration
 
-  shopName.value = storeConfiguration.storeName
-  color.value = storeConfiguration.color
-  title.value = storeConfiguration.title
-  description.value = storeConfiguration.description
-  buttonText.value = storeConfiguration.button
-  advantages.value = storeConfiguration.advantages.map(
-    (advantage: any) => advantage.props
-  )
-  backgroundImage.value = storeConfiguration.image
+    shopName.value = storeConfiguration.storeName
+    color.value = storeConfiguration.color
+    title.value = storeConfiguration.title
+    description.value = storeConfiguration.description
+    buttonText.value = storeConfiguration.button
+    advantages.value = storeConfiguration.advantages.map(
+      (advantage: any) => advantage.props
+    )
+    backgroundImage.value = storeConfiguration.image
+  } catch (error) {
+    Sentry.captureException(error)
+  }
 }
 
 async function saveGlobalInfos() {
-  const formData = new FormData()
+  try {
+    const formData = new FormData()
 
-  formData.append('logo', logo.value)
-  formData.append(
-    'body',
-    JSON.stringify({ storeName: shopName.value, color: color.value })
-  )
+    formData.append('logo', logo.value)
+    formData.append(
+      'body',
+      JSON.stringify({ storeName: shopName.value, color: color.value })
+    )
 
-  await $fetch(
-    `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}/configure-store`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${getUser?.accessToken}`,
-      },
-      body: formData,
-    }
-  )
+    await $fetch(
+      `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}/configure-store`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${getUser?.accessToken}`,
+        },
+        body: formData,
+      }
+    )
+  } catch (error) {
+    Sentry.captureException(error)
+  }
 }
 
 async function saveTexts() {
-  const formData = new FormData()
+  try {
+    const formData = new FormData()
 
-  formData.append('image', backgroundImage.value)
-  formData.append(
-    'body',
-    JSON.stringify({
-      title: title.value,
-      description: description.value,
-      button: buttonText.value,
-      advantages: advantages.value,
-    })
-  )
+    formData.append('image', backgroundImage.value)
+    formData.append(
+      'body',
+      JSON.stringify({
+        title: title.value,
+        description: description.value,
+        button: buttonText.value,
+        advantages: advantages.value,
+      })
+    )
 
-  await $fetch(
-    `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}/configure-store`,
-    {
+    await $fetch(
+      `${config.public.API_GATEWAY_URL}/companies/${getUser?.payload.companyId}/configure-store`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${getUser?.accessToken}`,
+        },
+        body: formData,
+      }
+    )
+  } catch (error) {
+    Sentry.captureException(error)
+  }
+}
+
+async function fetchCategories() {
+  try {
+    const { data } = await $fetch(
+      `${config.public.API_GATEWAY_URL}/products/categories`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${getUser?.accessToken}`,
+        },
+      }
+    )
+
+    categories.value = data.value
+  } catch (error) {
+    Sentry.captureException(error)
+  }
+}
+
+async function createCategory() {
+  try {
+    await $fetch(`${config.public.API_GATEWAY_URL}/products/categories`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${getUser?.accessToken}`,
       },
-      body: formData,
-    }
-  )
-}
-
-async function fetchCategories() {
-  const { data } = await $fetch(
-    `${config.public.API_GATEWAY_URL}/products/categories`,
-    {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${getUser?.accessToken}`,
+      body: {
+        name: categoryName.value,
+        companyId: getUser?.payload.companyId,
       },
-    }
-  )
+    })
 
-  categories.value = data.value
-}
+    categoryName.value = ''
 
-async function createCategory() {
-  await $fetch(`${config.public.API_GATEWAY_URL}/products/categories`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${getUser?.accessToken}`,
-    },
-    body: {
-      name: categoryName.value,
-      companyId: getUser?.payload.companyId,
-    },
-  })
-
-  categoryName.value = ''
-
-  fetchCategories()
+    fetchCategories()
+  } catch (error) {
+    Sentry.captureException(error)
+  }
 }
 
 async function saveCategory(category: Object) {
-  await $fetch(
-    `${config.public.API_GATEWAY_URL}/products/categories/${category.id}`,
-    {
+  try {
+    await $fetch(
+      `${config.public.API_GATEWAY_URL}/products/categories/${category.id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${getUser?.accessToken}`,
+        },
+        body: {
+          name: category.name,
+        },
+      }
+    )
+
+    fetchCategories()
+  } catch (error) {
+    Sentry.captureException(error)
+  }
+}
+
+async function deleteCategory(category: Object) {
+  try {
+    await $fetch(
+      `${config.public.API_GATEWAY_URL}/products/categories/${category.id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${getUser?.accessToken}`,
+        },
+      }
+    )
+
+    fetchCategories()
+  } catch (error) {
+    Sentry.captureException(error)
+  }
+}
+
+async function fetchProducts() {
+  try {
+    const { data } = await $fetch(
+      `${config.public.API_GATEWAY_URL}/products?companyId=${getUser?.payload.companyId}&page=1&limit=200`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${getUser?.accessToken}`,
+        },
+      }
+    )
+
+    products.value = data.data
+  } catch (error) {
+    Sentry.captureException(error)
+  }
+}
+
+async function createProduct() {
+  try {
+    const formData = new FormData()
+
+    formData.append('image', productImage.value)
+    formData.append(
+      'body',
+      JSON.stringify({
+        name: productName.value,
+        categoryId: productCategory.value,
+        price: Number(productPrice.value),
+        description: productDescription.value,
+        stock: Number(productStock.value),
+        conditioning: productConditioning.value,
+        unity: productUnity.value,
+      })
+    )
+
+    await $fetch(`${config.public.API_GATEWAY_URL}/products`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${getUser?.accessToken}`,
+        ContentType: 'multipart/form-data',
+      },
+      body: formData,
+    })
+
+    productCategory.value = ''
+    productName.value = ''
+    productPrice.value = 0
+    productDescription.value = ''
+    productStock.value = 0
+    productConditioning.value = ''
+    productUnity.value = ''
+    productImage.value = {} as File
+
+    fetchProducts()
+  } catch (error) {
+    Sentry.captureException(error)
+  }
+}
+
+async function saveProduct(product: Object) {
+  try {
+    await $fetch(`${config.public.API_GATEWAY_URL}/products/${product.id}`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${getUser?.accessToken}`,
       },
       body: {
-        name: category.name,
+        product,
       },
-    }
-  )
+    })
 
-  fetchCategories()
+    fetchProducts()
+  } catch (error) {
+    Sentry.captureException(error)
+  }
 }
 
-async function deleteCategory(category: Object) {
-  await $fetch(
-    `${config.public.API_GATEWAY_URL}/products/categories/${category.id}`,
-    {
+async function deleteProduct(product: Object) {
+  try {
+    await $fetch(`${config.public.API_GATEWAY_URL}/products/${product.id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${getUser?.accessToken}`,
       },
-    }
-  )
-
-  fetchCategories()
-}
-
-async function fetchProducts() {
-  const { data } = await $fetch(
-    `${config.public.API_GATEWAY_URL}/products?companyId=${getUser?.payload.companyId}&page=1&limit=200`,
-    {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${getUser?.accessToken}`,
-      },
-    }
-  )
-
-  products.value = data.data
-}
-
-async function createProduct() {
-  const formData = new FormData()
-
-  formData.append('image', productImage.value)
-  formData.append(
-    'body',
-    JSON.stringify({
-      name: productName.value,
-      categoryId: productCategory.value,
-      price: Number(productPrice.value),
-      description: productDescription.value,
-      stock: Number(productStock.value),
-      conditioning: productConditioning.value,
-      unity: productUnity.value,
     })
-  )
 
-  await $fetch(`${config.public.API_GATEWAY_URL}/products`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${getUser?.accessToken}`,
-      ContentType: 'multipart/form-data',
-    },
-    body: formData,
-  })
-
-  productCategory.value = ''
-  productName.value = ''
-  productPrice.value = 0
-  productDescription.value = ''
-  productStock.value = 0
-  productConditioning.value = ''
-  productUnity.value = ''
-  productImage.value = {} as File
-
-  fetchProducts()
-}
-
-async function saveProduct(product: Object) {
-  await $fetch(`${config.public.API_GATEWAY_URL}/products/${product.id}`, {
-    method: 'PATCH',
-    headers: {
-      Authorization: `Bearer ${getUser?.accessToken}`,
-    },
-    body: {
-      product,
-    },
-  })
-
-  fetchProducts()
-}
-
-async function deleteProduct(product: Object) {
-  await $fetch(`${config.public.API_GATEWAY_URL}/products/${product.id}`, {
-    method: 'DELETE',
-    headers: {
-      Authorization: `Bearer ${getUser?.accessToken}`,
-    },
-  })
-
-  fetchProducts()
+    fetchProducts()
+  } catch (error) {
+    Sentry.captureException(error)
+  }
 }
 </script>

@@ -55,6 +55,7 @@
 </template>
 
 <script setup lang="ts">
+import * as Sentry from '@sentry/nuxt'
 import { useMainStore } from '~/store'
 
 const config = useRuntimeConfig()
@@ -88,12 +89,16 @@ async function login() {
     }
 
     setUser(user)
+    Sentry.setUser({
+      email: email.value,
+    })
 
     router.push('/').then(() => {
       window.location.reload()
     })
   } catch (error) {
     errorMessage.value = 'login.error'
+    Sentry.captureException(error)
   }
 }
 function oauthLogin() {

@@ -210,6 +210,7 @@
 </template>
 
 <script setup lang="ts">
+import * as Sentry from '@sentry/nuxt'
 import { ref, reactive, computed, watch } from 'vue'
 import { useMainStore } from '~/store'
 
@@ -363,6 +364,9 @@ const register = async () => {
     }
 
     setUser(user)
+    Sentry.setUser({
+      email: admin.email,
+    })
 
     router.push('/shopconfig').then(() => {
       window.location.reload()
@@ -378,6 +382,8 @@ const register = async () => {
     } else {
       errorMessage.value = 'login.error'
     }
+
+    Sentry.captureException(error)
   }
 }
 </script>

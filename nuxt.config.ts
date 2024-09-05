@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     '@fortawesome/fontawesome-svg-core/styles.css',
   ],
 
-  modules: ['@pinia/nuxt'],
+  modules: ['@pinia/nuxt', '@sentry/nuxt/module'],
 
   postcss: {
     plugins: {
@@ -36,6 +36,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       API_GATEWAY_URL: process.env.API_GATEWAY_URL,
+      sentry: {
+        dsn: process.env.SENTRY_DSN,
+      },
     },
   },
+
+  compatibilityDate: '2024-08-29',
 })
