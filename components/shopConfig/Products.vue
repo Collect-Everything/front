@@ -87,7 +87,7 @@
           @change="update('productConditioning', $event)"
         >
           <option
-            v-for="conditioning in ['unit']"
+            v-for="conditioning in ['unit', 'pack', 'box']"
             :key="conditioning"
             :value="conditioning"
           >
