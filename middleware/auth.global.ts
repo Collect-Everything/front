@@ -3,7 +3,7 @@ import { useMainStore } from '~/store'
 export default defineNuxtRouteMiddleware((to) => {
   const user = useMainStore().user
 
-  const publicRoutes = ['/', '/login', '/register', '/prices', '/about']
+  const publicRoutes = ['/', '/login', '/register', '/prices', '/about', '/validate-email']
 
   if (!user) {
     const userFromCookies = JSON.parse(localStorage.getItem('user') || 'null')

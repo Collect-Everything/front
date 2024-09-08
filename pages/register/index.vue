@@ -342,35 +342,12 @@ const register = async () => {
       },
     })
 
+    useNuxtApp().$toast.success('Inscription réussie, validez votre email afin de pouvoir vous connecter')
+
+    router.push('/login')
+
     errorMessage.value = ''
 
-    // login the user
-    const { data } = await $fetch(
-      `${config.public.API_GATEWAY_URL}/auth/login`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: {
-          email: admin.email,
-          password: admin.password,
-        },
-      }
-    )
-
-    const user = {
-      payload: data.payload,
-      accessToken: data.accessToken,
-      refreshToken: data.refreshToken,
-    }
-
-    setUser(user)
-    Sentry.setUser({
-      email: admin.email,
-    })
-
-    router.push('/shopconfig').then(() => {
-      window.location.reload()
-    })
   } catch (error) {
     if (
       error?.response?._data?.message ===
